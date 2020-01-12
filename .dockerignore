@@ -1,0 +1,19 @@
+*.dockerignore
+*.env
+.git
+*.gitignore
+**/.vs
+**/.vscode
+docker-compose.yml
+docker-compose.*.yml
+**/*log*.txt
+**/*log*.log
+**/bin
+**/obj
+**/node_modules
+**/packages
+
+# current folder
+.github
+build
+docs
