@@ -3,6 +3,7 @@ using RESTFul.Api.Commands;
 using RESTFul.Api.Models;
 using RESTFul.Api.Notification;
 using RESTFul.Api.Service.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -12,12 +13,13 @@ namespace RESTFul.Api.Service
     {
         private readonly IDomainNotificationMediatorService _domainNotification;
         private static List<User> _users;
+        private static Random rnd = new Random();
 
         public DummyUserService(IDomainNotificationMediatorService domainNotification)
         {
             _domainNotification = domainNotification;
         }
-        private static void CheckUsers()
+        private void CheckUsers()
         {
             if (_users == null)
             {
@@ -26,11 +28,18 @@ namespace RESTFul.Api.Service
                     Id = index + 1,
                     FirstName = Name.FirstName,
                     LastName = Name.LastName,
-                    Username =Internet.Email(Name.FirstName),
+                    Username = Internet.Email(Name.FirstName),
                     Gender = Gender.Random,
-                    Birthday = DateAndTime.Birthday
+                    Birthday = DateAndTime.Birthday,
+                    Active = true,
+                    Claims = GenerateClaims()
                 }).ToList();
             }
+        }
+
+        private IEnumerable<ClaimViewModel> GenerateClaims()
+        {
+            return Enumerable.Range(1, rnd.Next(1, 7)).Select(i => new ClaimViewModel(i + 1, Job.Title, Lorem.Paragraph())).ToList();
         }
 
         public IEnumerable<User> All()
@@ -56,6 +65,13 @@ namespace RESTFul.Api.Service
             var actua = Find(user.Username);
             _users.Remove(actua);
             _users.Add(user);
+        }
+
+        public void Remove(string username)
+        {
+            var actual = Find(username);
+            if (actual != null)
+                _users.Remove(actual);
         }
 
 

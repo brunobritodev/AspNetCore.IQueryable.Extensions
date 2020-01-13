@@ -22,7 +22,7 @@ namespace RESTFul.Api.Controllers
         }
 
         [HttpGet("")]
-        public ActionResult<IEnumerable<User>> Get()
+        public ActionResult<IEnumerable<User>> Get(string username, string name, int age, int limit = 20, int offset = 1)
         {
             return ResponseGet(_dummyUserService.All());
         }
@@ -76,6 +76,20 @@ namespace RESTFul.Api.Controllers
             model.Update(actual);
             _dummyUserService.Update(actual);
             return ResponsePutPatch();
+        }
+
+
+        [HttpDelete("{username}")]
+        public ActionResult<User> Delete(string username)
+        {
+            if (!ModelState.IsValid)
+            {
+                NotifyModelStateErrors();
+                return ModelStateErrorResponseError();
+            }
+
+            _dummyUserService.Remove(username);
+            return ResponseDelete();
         }
 
     }

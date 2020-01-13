@@ -10,5 +10,6 @@ namespace RESTFul.Api.Service.Interfaces
         User Find(string id);
         void Save(RegisterUserCommand command);
         void Update(User actualUser);
+        void Remove(string username);
     }
 }

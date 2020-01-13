@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace RESTFul.Api.Models
@@ -13,5 +14,7 @@ namespace RESTFul.Api.Models
         public DateTime? Birthday { get; set; }
         public int Id { get; set; }
         public string Username { get; set; }
+        public bool Active { get; set; }
+        public IEnumerable<ClaimViewModel> Claims { get; set; }
     }
 }
