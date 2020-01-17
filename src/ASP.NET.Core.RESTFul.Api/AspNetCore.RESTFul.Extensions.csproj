@@ -12,6 +12,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/brunohbrito/AspNet.Core.RESTFul.Extensions/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <RootNamespace>AspNetCore.IQueryable.Extensions</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

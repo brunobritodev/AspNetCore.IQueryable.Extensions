@@ -1,4 +1,4 @@
-﻿using AspNetCore.RESTFul.Extensions;
+﻿using AspNetCore.IQueryable.Extensions;
 using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.JsonPatch;
@@ -34,7 +34,7 @@ namespace RESTFul.Api.Controllers
         public async Task<ActionResult<List<UserViewModel>>> Get([FromQuery] UserSearch search)
         {
             var result = _dummyUserService.Query().Apply(search);
-
+            
             return ResponseGet(await _mapper.ProjectTo<UserViewModel>(result).ToListAsync());
         }
 

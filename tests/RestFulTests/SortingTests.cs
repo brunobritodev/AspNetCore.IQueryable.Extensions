@@ -1,4 +1,4 @@
-using AspNetCore.RESTFul.Extensions.Sort;
+using AspNetCore.IQueryable.Extensions.Sort;
 using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;

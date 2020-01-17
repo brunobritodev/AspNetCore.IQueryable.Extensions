@@ -1,7 +1,7 @@
-﻿using AspNetCore.RESTFul.Extensions.Attributes;
-using AspNetCore.RESTFul.Extensions.Filter;
-using AspNetCore.RESTFul.Extensions.Pagination;
-using AspNetCore.RESTFul.Extensions.Sort;
+﻿using AspNetCore.IQueryable.Extensions.Attributes;
+using AspNetCore.IQueryable.Extensions.Filter;
+using AspNetCore.IQueryable.Extensions.Pagination;
+using AspNetCore.IQueryable.Extensions.Sort;
 using System;
 
 namespace RestFulTests.Models

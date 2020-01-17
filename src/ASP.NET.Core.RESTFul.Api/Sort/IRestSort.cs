@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.RESTFul.Extensions.Sort
+﻿namespace AspNetCore.IQueryable.Extensions.Sort
 {
     public interface IRestSort
     {

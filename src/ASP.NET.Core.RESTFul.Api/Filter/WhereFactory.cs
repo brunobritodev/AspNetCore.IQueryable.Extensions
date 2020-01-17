@@ -1,12 +1,12 @@
-﻿using AspNetCore.RESTFul.Extensions.Attributes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AspNetCore.IQueryable.Extensions.Attributes;
 
-namespace AspNetCore.RESTFul.Extensions.Filter
+namespace AspNetCore.IQueryable.Extensions.Filter
 {
 
-    public class WhereFactory<TSearchModel>
+    internal class WhereFactory<TSearchModel>
         where TSearchModel : new()
 
     {

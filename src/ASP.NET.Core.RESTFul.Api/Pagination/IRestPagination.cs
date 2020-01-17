@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.RESTFul.Extensions.Pagination
+﻿namespace AspNetCore.IQueryable.Extensions.Pagination
 {
     public interface IRestPagination
     {

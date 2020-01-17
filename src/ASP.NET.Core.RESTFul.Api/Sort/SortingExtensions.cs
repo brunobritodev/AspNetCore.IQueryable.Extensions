@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace AspNetCore.RESTFul.Extensions.Sort
+namespace AspNetCore.IQueryable.Extensions.Sort
 {
     public static class SortingExtensions
     {
@@ -16,7 +16,7 @@ namespace AspNetCore.RESTFul.Extensions.Sort
             var useThenBy = false;
             foreach (var sortTerm in fields.Fields())
             {
-                var property = RestFulExtensions.GetProperty<TEntity>(sortTerm.FieldName());
+                var property = PrimitiveExtensions.GetProperty<TEntity>(sortTerm.FieldName());
 
                 if (property != null)
                 {

@@ -1,9 +1,9 @@
-﻿using AspNetCore.RESTFul.Extensions.Filter;
-using FluentAssertions;
+﻿using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;
 using System.Collections.Generic;
 using System.Linq;
+using AspNetCore.IQueryable.Extensions.Filter;
 using Xunit;
 
 namespace RestFulTests

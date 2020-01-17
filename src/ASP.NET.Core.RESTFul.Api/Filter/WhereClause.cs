@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
-using AspNetCore.RESTFul.Extensions.Attributes;
+using AspNetCore.IQueryable.Extensions.Attributes;
 
-namespace AspNetCore.RESTFul.Extensions.Filter
+namespace AspNetCore.IQueryable.Extensions.Filter
 {
     [DebuggerDisplay("{FieldName}")]
-    public class WhereClause
+    internal class WhereClause
     {
         private bool _customName;
 

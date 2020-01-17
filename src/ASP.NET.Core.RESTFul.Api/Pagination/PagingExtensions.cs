@@ -1,6 +1,8 @@
-﻿using System.Linq;
+﻿using AspNetCore.IQueryable.Extensions.Attributes;
+using System;
+using System.Linq;
 
-namespace AspNetCore.RESTFul.Extensions.Pagination
+namespace AspNetCore.IQueryable.Extensions.Pagination
 {
     public static class PagingExtensions
     {
@@ -18,6 +20,15 @@ namespace AspNetCore.RESTFul.Extensions.Pagination
                     TModel options)
         where TModel : IRestPagination
         {
+            var attr = Attribute.GetCustomAttributes(PrimitiveExtensions.GetProperty<TModel>("Limit")).FirstOrDefault();
+            // Check for the AnimalType attribute.
+            if (attr?.GetType() == typeof(RestAttribute))
+            {
+                var data = (RestAttribute)attr;
+                if (data.Max > 0)
+                    options.Limit = data.Max;
+            }
+
             return result.Skip(options.Offset).Take(options.Limit);
         }
     }

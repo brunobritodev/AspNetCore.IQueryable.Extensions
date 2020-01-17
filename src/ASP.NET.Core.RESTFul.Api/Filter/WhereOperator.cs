@@ -1,4 +1,4 @@
-﻿namespace AspNetCore.RESTFul.Extensions.Filter
+﻿namespace AspNetCore.IQueryable.Extensions.Filter
 {
     public enum WhereOperator
     {
