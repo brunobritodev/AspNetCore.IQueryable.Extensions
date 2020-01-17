@@ -39,5 +39,18 @@ namespace RestFulTests
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
             sortingByFieldName.Should().HaveCount(1);
         }
+
+
+
+        [Fact]
+        public void ShouldApplyAllFilterInNestedObject()
+        {
+            var userSearch = new UserSearch()
+            {
+                Ssn = _users.Last().SocialNumber.Identification
+            };
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
+            sortingByFieldName.Should().HaveCount(1);
+        }
     }
 }

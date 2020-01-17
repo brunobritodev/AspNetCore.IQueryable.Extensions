@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using AspNetCore.RESTFul.Extensions.Pagination;
+﻿using AspNetCore.RESTFul.Extensions.Pagination;
 using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;
+using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace RestFulTests
@@ -31,6 +31,18 @@ namespace RestFulTests
         {
             var sortingByFieldName = _users.AsQueryable().Paginate(limit, 0);
             sortingByFieldName.Should().HaveCount(10);
+        }
+
+        [Fact]
+        public void ShouldPagingFromInterfaceImplementation()
+        {
+            var paginate = new UserSearch()
+            {
+                Limit = 5,
+                Offset = 0
+            };
+            var sortingByFieldName = _users.AsQueryable().Paginate(paginate);
+            sortingByFieldName.Should().HaveCount(5);
         }
     }
 }

@@ -1,23 +1,23 @@
-﻿using System;
+﻿using AspNetCore.RESTFul.Extensions.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCore.RESTFul.Extensions.Attributes;
 
 namespace AspNetCore.RESTFul.Extensions.Filter
 {
 
-    public class SearchModelProcessor<TSearchModel>
+    public class WhereFactory<TSearchModel>
         where TSearchModel : new()
 
     {
         private readonly TSearchModel _searchModel;
 
-        public SearchModelProcessor(TSearchModel searchModel)
+        public WhereFactory(TSearchModel searchModel)
         {
             _searchModel = searchModel;
         }
 
-        public List<WhereClause> GetFilters()
+        public List<WhereClause> GetCriterias()
         {
             var type = _searchModel.GetType();
             var criterias = new List<WhereClause>();

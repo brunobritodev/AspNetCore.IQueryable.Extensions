@@ -15,6 +15,12 @@ namespace RestFulTests.Models
         public int Id { get; set; }
         public string Username { get; set; }
         public bool Active { get; set; }
+        public Ssn SocialNumber { get; set; }
         public IEnumerable<Claim> Claims { get; set; }
+    }
+
+    public class Ssn
+    {
+        public string Identification { get; set; }
     }
 }

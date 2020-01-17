@@ -52,5 +52,40 @@ namespace RestFulTests
             }
         }
 
+
+        [Fact]
+        public void ShouldSortFromInterfaceImplementation()
+        {
+            var sort = new UserSearch()
+            {
+                Sort = "username"
+            };
+            var sortingByFieldName = _users.AsQueryable().Sort(sort).ToList();
+            var sortingByOriginal = _users.OrderBy(s => s.Username).ThenBy(s => s.FirstName).ToList();
+            for (int i = 0; i < sortingByFieldName.Count(); i++)
+            {
+                sortingByFieldName[i].Username.Should().Be(sortingByOriginal[i].Username);
+                sortingByFieldName[i].FirstName.Should().Be(sortingByOriginal[i].FirstName);
+            }
+        }
+
+
+
+        [Fact]
+        public void ShouldNotThrowErrorWhenSortFieldDoesntExist()
+        {
+            var sort = new UserSearch()
+            {
+                Sort = "usernameaa"
+            };
+            var sortingByFieldName = _users.AsQueryable().Sort(sort).ToList();
+            var sortingByOriginal = _users.ToList();
+            for (int i = 0; i < sortingByFieldName.Count(); i++)
+            {
+                sortingByFieldName[i].Username.Should().Be(sortingByOriginal[i].Username);
+                sortingByFieldName[i].FirstName.Should().Be(sortingByOriginal[i].FirstName);
+            }
+        }
+
     }
 }

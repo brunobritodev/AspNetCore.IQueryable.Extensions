@@ -14,27 +14,27 @@ namespace AspNetCore.RESTFul.Extensions.Filter
                 return result;
             }
 
-            var processor = new SearchModelProcessor<TSearch>(model);
-            var filters = processor.GetFilters();
+            var processor = new WhereFactory<TSearch>(model);
+            var criterias = processor.GetCriterias();
 
             Expression outerExpression = null;
             var parameterExpression = Expression.Parameter(typeof(TEntity), "model");
-            foreach (var filterTerm in filters)
+            foreach (var criteria in criterias)
             {
-                if(!typeof(TEntity).HasProperty(filterTerm.FieldName))
+                if (!typeof(TEntity).HasProperty(criteria.FieldName) && !criteria.FieldName.Contains("."))
                     continue;
-                
+
                 dynamic propertyValue = parameterExpression;
-                foreach (var part in filterTerm.FieldName.Split('.'))
+                foreach (var part in criteria.FieldName.Split('.'))
                 {
                     propertyValue = Expression.PropertyOrField(propertyValue, part);
 
                 }
 
-                var filterValue = GetClosureOverConstant(filterTerm.Property.GetValue(model, null), filterTerm.Property.PropertyType);
+                var filterValue = GetClosureOverConstant(criteria.Property.GetValue(model, null), criteria.Property.PropertyType);
 
 
-                if (!filterTerm.CaseSensitive)
+                if (!criteria.CaseSensitive)
                 {
                     propertyValue = Expression.Call(propertyValue,
                         typeof(string).GetMethods()
@@ -45,9 +45,9 @@ namespace AspNetCore.RESTFul.Extensions.Filter
                             .First(m => m.Name == "ToUpper" && m.GetParameters().Length == 0));
                 }
 
-                var expression = GetExpression(filterTerm, filterValue, propertyValue);
+                var expression = GetExpression(criteria, filterValue, propertyValue);
 
-                if (filterTerm.UseNot)
+                if (criteria.UseNot)
                 {
                     expression = Expression.Not(expression);
                 }

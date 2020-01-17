@@ -5,7 +5,7 @@
     <Version>3.1.0</Version>
     <Authors>Bruno Brito</Authors>
     <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon-nuget.png</PackageIconUrl>
-    <PackageTags>RESTFul API Extensions</PackageTags>
+    <PackageTags>RESTFul API Extensions IQueryable linq</PackageTags>
     <Title>RESTFul Extensions</Title>
     <Description>Extensions to help build truly RESTFul API's</Description>
     <NeutralLanguage>en</NeutralLanguage>
