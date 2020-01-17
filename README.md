@@ -155,7 +155,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 
 When creating a Search class, you can define criterias by decorating your properties:
 
-```
+``` c#
 public class CustomUserSearch
 {
     [Rest(Operator = WhereOperator.Equals, UseNot = true)]
@@ -179,7 +179,7 @@ public class CustomUserSearch
 
 You can specify different property name to hide you database original fields
 
-```
+``` c#
 public class CustomUserSearch
 {
     [Rest(Operator = WhereOperator.Equals, UseNot = true, HasName = "Privilege")]
