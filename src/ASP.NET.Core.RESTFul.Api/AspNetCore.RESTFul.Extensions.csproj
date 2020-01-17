@@ -4,13 +4,13 @@
     <TargetFramework>netstandard2.1</TargetFramework>
     <Version>3.1.0</Version>
     <Authors>Bruno Brito</Authors>
-    <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon.png</PackageIconUrl>
+    <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon-nuget.png</PackageIconUrl>
     <PackageTags>RESTFul API Extensions</PackageTags>
     <Title>RESTFul Extensions</Title>
     <Description>Extensions to help build truly RESTFul API's</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/brunohbrito/JpProject.AspNetCore.PasswordHasher/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/brunohbrito/AspNet.Core.RESTFul.Extensions/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 

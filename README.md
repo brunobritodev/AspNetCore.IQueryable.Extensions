@@ -1,6 +1,6 @@
 
 # ASP.NET Core RESTFul Extensions
-![Nuget](https://img.shields.io/nuget/v/JpProject.AspNetCore.PasswordHasher.Argon2)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/PasswordHasher/9)[![Build Status](https://dev.azure.com/brunohbrito/PasswordHasher/_apis/build/status/brunohbrito.JPProject.AspNetCore.PasswordHasher?branchName=master)](https://dev.azure.com/brunohbrito/PasswordHasher/_build/latest?definitionId=392&branchName=master)
+![Nuget](https://img.shields.io/nuget/v/AspNetCore.RESTFul.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.RESTFul.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_apis/build/status/brunohbrito.AspNet.Core.RESTFul.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_build/latest?definitionId=14&branchName=master)
 
 <img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
 Lightweight API with Custom IQueryable LINQ Extensions to help you build your queries from a Class and expose it as GET parameter. The extensions support filtering, sorting and pagination.
