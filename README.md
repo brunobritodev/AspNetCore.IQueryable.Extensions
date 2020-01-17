@@ -3,34 +3,23 @@
 ![Nuget](https://img.shields.io/nuget/v/AspNetCore.RESTFul.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.RESTFul.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_apis/build/status/brunohbrito.AspNet.Core.RESTFul.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_build/latest?definitionId=14&branchName=master)
 
 <img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
-Lightweight API with Custom IQueryable LINQ Extensions to help you build your queries from a Class and expose it as GET parameter. The extensions support filtering, sorting and pagination.
+Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your queries from a custom Class and expose it as GET parameter.
 
 
 ## Table of Contents ##
 
 - [ASP.NET Core RESTFul Extensions](#aspnet-core-restful-extensions)
   - [Table of Contents](#table-of-contents)
-- [Why](#why)
 - [How](#how)
 - [Sort](#sort)
 - [Paging](#paging)
 - [All in One](#all-in-one)
 - [Criterias for filtering](#criterias-for-filtering)
 - [Different database fields name](#different-database-fields-name)
+- [Why](#why)
 - [License](#license)
 
 ------------------
-
-# Why
-
-RESTFul api's are hard to create. See the example get:
-
-`https://www.myapi.com/users?name=bruno&age_lessthan=30&sortby=name,-age&limit=20&offset=20`
-
-How many code you need to perform such search? A custom filter for each Field, maybe a for and a switch for each `sortby` and after all apply pagination.
-How many resources your api have? 
-
-This lightweight API create a custom IQueryable based in Querystring to help your ORM or LINQ to filter data.
 
 # How #
 
@@ -204,6 +193,16 @@ public class CustomUserSearch
 }
 ```
 
+# Why
+
+RESTFul api's are hard to create. See the example get:
+
+`https://www.myapi.com/users?name=bruno&age_lessthan=30&sortby=name,-age&limit=20&offset=20`
+
+How many code you need to perform such search? A custom filter for each Field, maybe a for and a switch for each `sortby` and after all apply pagination.
+How many resources your api have? 
+
+This lightweight API create a custom IQueryable based in Querystring to help your ORM or LINQ to filter data.
 
 ---------------
 
