@@ -3,7 +3,7 @@
 ![Nuget](https://img.shields.io/nuget/v/AspNetCore.RESTFul.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.RESTFul.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_apis/build/status/brunohbrito.AspNet.Core.RESTFul.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_build/latest?definitionId=14&branchName=master)
 
 <img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
-Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your queries from a custom Class and expose it as GET parameter.
+Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your objects from a custom Class and expose it as GET parameter.
 
 
 ## Table of Contents ##
@@ -38,7 +38,7 @@ public class UserSearch
 }
 ```
 
-Expose this class as GET in your API and use it to Filter your Database:
+Expose this class as GET in your API and use it to Filter your collection:
 
 ``` c#
 [HttpGet("")]
@@ -149,7 +149,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 }
 ```
 
-`IRestSort` and `IRestPagination` give the ability for Apply use Sort and Pagination methods. If don't wanna sort, only pagination remove Interface from Class.
+`IRestSort` and `IRestPagination` give the ability for method `Apply` use **Sort** and **Pagination**. If don't wanna sort, just use pagination remove `IRestSort` Interface from Class.
 
 # Criterias for filtering
 
@@ -177,7 +177,7 @@ public class CustomUserSearch
 
 # Different database fields name
 
-You can specify different property name to hide you database original fields
+You can specify different property name to hide you properties original fields
 
 ``` c#
 public class CustomUserSearch
