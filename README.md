@@ -95,13 +95,14 @@ public class UserSearch
 {
     public string Username { get; set; }
 
+    [Rest(Max = 100)]
     public int Limit { get; set; } = 10;
 
     public int Offset { get; set; } = 0;
 }
 ```
 
-Limit is the total results in response. Offset is how many rows to Skip.
+**Limit** is the total results in response. **Offset** is how many rows to Skip. Optionally you can set the `Max` attribute to restrict the max items of pagination.
 
 ``` c#
 [HttpGet("")]
