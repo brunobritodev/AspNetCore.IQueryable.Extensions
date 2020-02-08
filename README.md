@@ -16,6 +16,7 @@ Lightweight API that construct custom IQueryable LINQ Extensions to help you fil
 - [All in One](#all-in-one)
 - [Criterias for filtering](#criterias-for-filtering)
 - [Different database fields name](#different-database-fields-name)
+- [Or Operator](#or-operator)
 - [Why](#why)
 - [License](#license)
 
@@ -204,6 +205,25 @@ public class CustomUserSearch
     public string Email { get; set; }
 }
 ```
+
+# Or Operator
+
+You can use Or operator for your queries.
+
+``` c#
+public class CustomUserSearch
+{
+    [QueryOperator(Operator = WhereOperator.Equals, UseOr = true]
+    public string Category { get; set; }
+
+    [QueryOperator(Operator = WhereOperator.GreaterThanOrEqualTo)]
+    public int OlderThan { get; set; }
+
+    [QueryOperator(Operator = WhereOperator.StartsWith, CaseSensitive = true, HasName = "Username")]
+    public string Email { get; set; }
+}
+```
+Take care, Or replace all "AND" at query.
 
 # Why
 

@@ -8,16 +8,19 @@ namespace RestFulTests.Models
 {
     public class UserSearch : IQuerySort, IQueryPaging
     {
+        [QueryOperator(Operator = WhereOperator.Contains, ExclusiveOrComparison = true)]
         public string Username { get; set; }
 
         [QueryOperator(Operator = WhereOperator.GreaterThan)]
         public DateTime? Birthday { get; set; }
 
-        [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
+        [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname", OrComparison = true)]
         public string Name { get; set; }
 
         [QueryOperator(Operator = WhereOperator.Contains, HasName = "SocialNumber.Identification")]
         public string Ssn { get; set; }
+
+
 
         public int Offset { get; set; }
         public int Limit { get; set; } = 10;

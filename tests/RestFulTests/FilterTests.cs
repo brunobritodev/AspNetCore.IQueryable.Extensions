@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
+﻿using AspNetCore.IQueryable.Extensions.Filter;
+using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCore.IQueryable.Extensions.Filter;
 using Xunit;
 
 namespace RestFulTests
@@ -41,6 +41,33 @@ namespace RestFulTests
         }
 
 
+
+        [Fact]
+        public void ShouldApplyOrInFilter()
+        {
+            var userSearch = new UserSearch()
+            {
+                Name = _users.First().FirstName,
+                Ssn = _users.First().SocialNumber.Identification,
+                Username = _users.Last().Username
+            };
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
+            sortingByFieldName.Should().HaveCount(2);
+        }
+
+
+
+        [Fact]
+        public void ShouldApplyExclusiveOrInFilter()
+        {
+            var userSearch = new UserSearch()
+            {
+                Name = _users.First().FirstName,
+                Username = _users.Last().Username
+            };
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
+            sortingByFieldName.Should().HaveCount(2);
+        }
 
         [Fact]
         public void ShouldApplyAllFilterInNestedObject()
