@@ -1,6 +1,6 @@
 
-# ASP.NET Core RESTFul Extensions
-![Nuget](https://img.shields.io/nuget/v/AspNetCore.RESTFul.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.RESTFul.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_apis/build/status/brunohbrito.AspNet.Core.RESTFul.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.RESTFul.Extensions/_build/latest?definitionId=14&branchName=master)
+# ASP.NET Core IQueryable Extensions
+![Nuget](https://img.shields.io/nuget/v/AspNetCore.IQueryable.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.IQueryable.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.IQueryabre.Extensions/_apis/build/status/brunohbrito.AspNet.Core.IQueryable.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.IQueryable.Extensions/_build/latest?definitionId=14&branchName=master)
 
 <img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
 Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your objects from a custom Class and expose it as GET parameter.
@@ -8,7 +8,7 @@ Lightweight API that construct custom IQueryable LINQ Extensions to help you fil
 
 ## Table of Contents ##
 
-- [ASP.NET Core RESTFul Extensions](#aspnet-core-restful-extensions)
+- [ASP.NET Core IQueryable Extensions](#aspnet-core-iqueryable-extensions)
   - [Table of Contents](#table-of-contents)
 - [How](#how)
 - [Sort](#sort)
@@ -209,5 +209,5 @@ This lightweight API create a custom IQueryable based in Querystring to help you
 
 # License
 
-AspNet.Core.RESTFul.Extensions is Open Source software and is released under the MIT license. This license allow the use of AspNet.Core.RESTFul.Extensions in free and commercial applications and libraries without restrictions.
+AspNet.Core.IQueryable.Extensions is Open Source software and is released under the MIT license. This license allow the use of AspNet.Core.IQueryable.Extensions in free and commercial applications and libraries without restrictions.
 

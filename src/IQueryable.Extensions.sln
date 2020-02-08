@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29519.181
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RESTFul.Api", "RESTFul.Api\RESTFul.Api.csproj", "{22DA1EB9-4AEC-42F5-AB8E-25B8DB3F9589}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.IQueryable.Extensions", "ASP.NET.Core.RESTFul.Api\AspNetCore.IQueryable.Extensions.csproj", "{1D0339BD-2ED5-48F2-8072-7D848363410D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCore.IQueryable.Extensions", "AspNetCore.IQueryable.Extensions\AspNetCore.IQueryable.Extensions.csproj", "{1D0339BD-2ED5-48F2-8072-7D848363410D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{58D30F1C-B75E-42E2-917A-4657FF203D2D}"
 EndProject
