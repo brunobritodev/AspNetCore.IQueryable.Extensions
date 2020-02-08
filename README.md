@@ -1,6 +1,6 @@
 
 # ASP.NET Core IQueryable Extensions
-![Nuget](https://img.shields.io/nuget/v/AspNetCore.IQueryable.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNet.Core.IQueryable.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNet.Core.IQueryabre.Extensions/_apis/build/status/brunohbrito.AspNet.Core.IQueryable.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNet.Core.IQueryable.Extensions/_build/latest?definitionId=14&branchName=master)
+![Nuget](https://img.shields.io/nuget/v/AspNetCore.IQueryable.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNetCore.IQueryable.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNetCore.IQueryable.Extensions/_apis/build/status/brunohbrito.AspNetCore.IQueryable.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNetCore.IQueryable.Extensions/_build/latest?definitionId=14&branchName=master)
 
 <img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
 Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your objects from a custom Class and expose it as GET parameter.

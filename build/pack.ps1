@@ -9,6 +9,6 @@ else{
 }
 Write-Host 'Version: ' $version 
 get-childitem * -include *.nupkg | remove-item
-dotnet build ..\src\RESTFul.Api.sln
-dotnet test ..\src\RESTFul.Api.sln
-dotnet pack ..\src\RESTFul.Api.sln -o .\ -p:PackageVersion=$version
+dotnet build ..\src\IQueryable.Extensions.sln
+dotnet test ..\src\IQueryable.Extensions.sln
+dotnet pack ..\src\IQueryable.Extensions.sln -o .\ -p:PackageVersion=$version
