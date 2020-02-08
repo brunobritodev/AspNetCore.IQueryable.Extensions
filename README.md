@@ -23,15 +23,15 @@ Lightweight API that construct custom IQueryable LINQ Extensions to help you fil
 
 # How #
 
-You should install [AspNetCore.RESTFul.Extensions with NuGet](https://www.nuget.org/packages/AspNetCore.RESTFul.Extensions):
+You should install [AspNetCore.IQueryable.Extensions with NuGet](https://www.nuget.org/packages/AspNetCore.IQueryable.Extensions):
 ```
-    Install-Package AspNetCore.RESTFul.Extensions
+    Install-Package AspNetCore.IQueryable.Extensions
 ``` 
 
 Or via the .NET Core command line interface:
 
 ```
-    dotnet add package AspNetCore.RESTFul.Extensions
+    dotnet add package AspNetCore.IQueryable.Extensions
 ```
 
 Create a class with filtering properties:
