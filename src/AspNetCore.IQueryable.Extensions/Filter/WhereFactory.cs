@@ -31,9 +31,9 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
                 var attr = Attribute.GetCustomAttributes(propertyInfo).FirstOrDefault();
                 // Check for the AnimalType attribute.
-                if (attr?.GetType() == typeof(RestAttribute))
+                if (attr?.GetType() == typeof(QueryOperatorAttribute))
                 {
-                    var data = (RestAttribute)attr;
+                    var data = (QueryOperatorAttribute)attr;
                     criteria.UpdateAttributeData(data);
                 }
 

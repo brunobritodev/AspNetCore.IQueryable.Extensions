@@ -4,7 +4,7 @@ using System;
 namespace AspNetCore.IQueryable.Extensions.Attributes
 {
     [AttributeUsage(AttributeTargets.Property)]
-    public class RestAttribute : Attribute
+    public class QueryOperatorAttribute : Attribute
     {
         public WhereOperator Operator { get; set; } = WhereOperator.Equals;
         public bool UseNot { get; set; } = false;

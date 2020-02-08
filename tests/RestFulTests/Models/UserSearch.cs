@@ -6,17 +6,17 @@ using System;
 
 namespace RestFulTests.Models
 {
-    public class UserSearch : IRestSort, IRestPagination
+    public class UserSearch : IQuerySort, IQueryPaging
     {
         public string Username { get; set; }
 
-        [Rest(Operator = WhereOperator.GreaterThan)]
+        [QueryOperator(Operator = WhereOperator.GreaterThan)]
         public DateTime? Birthday { get; set; }
 
-        [Rest(Operator = WhereOperator.Contains, HasName = "Firstname")]
+        [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
         public string Name { get; set; }
 
-        [Rest(Operator = WhereOperator.Contains, HasName = "SocialNumber.Identification")]
+        [QueryOperator(Operator = WhereOperator.Contains, HasName = "SocialNumber.Identification")]
         public string Ssn { get; set; }
 
         public int Offset { get; set; }

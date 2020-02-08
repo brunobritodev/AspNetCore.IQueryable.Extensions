@@ -3,10 +3,10 @@ using AspNetCore.IQueryable.Extensions.Pagination;
 
 namespace RestFulTests.Models
 {
-    public class PagingMax : IRestPagination
+    public class PagingMax : IQueryPaging
     {
         public int Offset { get; set; }
-        [Rest(Max = 5)]
+        [QueryOperator(Max = 5)]
         public int Limit { get; set; } = 10;
     }
 }

@@ -21,7 +21,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
             CaseSensitive = true;
         }
 
-        public void UpdateAttributeData(RestAttribute data)
+        public void UpdateAttributeData(QueryOperatorAttribute data)
         {
             Operator = data.Operator;
             UseNot = data.UseNot;

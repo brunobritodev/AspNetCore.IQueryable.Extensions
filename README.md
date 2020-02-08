@@ -41,10 +41,10 @@ public class UserSearch
 {
     public string Username { get; set; }
 
-    [Rest(Operator = WhereOperator.GreaterThan)]
+    [QueryOperator(Operator = WhereOperator.GreaterThan)]
     public DateTime? Birthday { get; set; }
 
-    [Rest(Operator = WhereOperator.Contains, HasName = "Firstname")]
+    [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
     public string Name { get; set; }
 }
 ```
@@ -106,7 +106,7 @@ public class UserSearch
 {
     public string Username { get; set; }
 
-    [Rest(Max = 100)]
+    [QueryOperator(Max = 100)]
     public int Limit { get; set; } = 10;
 
     public int Offset { get; set; } = 0;
@@ -134,14 +134,14 @@ Example GET: `https://www.myapi.com/users?username=bruno&limit=10&offset=20`
 Create a search class like this
 
 ``` c#
-public class UserSearch : IRestSort, IRestPagination
+public class UserSearch : IQuerySort, IQueryPaging
 {
     public string Username { get; set; }
 
-    [Rest(Operator = WhereOperator.GreaterThan)]
+    [QueryOperator(Operator = WhereOperator.GreaterThan)]
     public DateTime? Birthday { get; set; }
 
-    [Rest(Operator = WhereOperator.Contains, HasName = "Firstname")]
+    [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
     public string Name { get; set; }
 
     public int Offset { get; set; }
@@ -161,7 +161,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 }
 ```
 
-`IRestSort` and `IRestPagination` give the ability for method `Apply` use **Sort** and **Pagination**. If don't wanna sort, just use pagination remove `IRestSort` Interface from Class.
+`IQuerySort` and `IQueryPaging` give the ability for method `Apply` use **Sort** and **Pagination**. If don't wanna sort, just use pagination remove `IQuerySort` Interface from Class.
 
 # Criterias for filtering
 
@@ -170,19 +170,19 @@ When creating a Search class, you can define criterias by decorating your proper
 ``` c#
 public class CustomUserSearch
 {
-    [Rest(Operator = WhereOperator.Equals, UseNot = true)]
+    [QueryOperator(Operator = WhereOperator.Equals, UseNot = true)]
     public string Category { get; set; }
 
-    [Rest(Operator = WhereOperator.GreaterThanOrEqualTo)]
+    [QueryOperator(Operator = WhereOperator.GreaterThanOrEqualTo)]
     public int OlderThan { get; set; }
 
-    [Rest(Operator = WhereOperator.StartsWith, CaseSensitive = true)]
+    [QueryOperator(Operator = WhereOperator.StartsWith, CaseSensitive = true)]
     public string Username { get; set; }
 
-    [Rest(Operator = WhereOperator.GreaterThan)]
+    [QueryOperator(Operator = WhereOperator.GreaterThan)]
     public DateTime? Birthday { get; set; }
 
-    [Rest(Operator = WhereOperator.Contains)]
+    [QueryOperator(Operator = WhereOperator.Contains)]
     public string Name { get; set; }
 }
 ```
@@ -194,13 +194,13 @@ You can specify different property name to hide you properties original fields
 ``` c#
 public class CustomUserSearch
 {
-    [Rest(Operator = WhereOperator.Equals, UseNot = true, HasName = "Privilege")]
+    [QueryOperator(Operator = WhereOperator.Equals, UseNot = true, HasName = "Privilege")]
     public string Category { get; set; }
 
-    [Rest(Operator = WhereOperator.GreaterThanOrEqualTo)]
+    [QueryOperator(Operator = WhereOperator.GreaterThanOrEqualTo)]
     public int OlderThan { get; set; }
 
-    [Rest(Operator = WhereOperator.StartsWith, CaseSensitive = true, HasName = "Username")]
+    [QueryOperator(Operator = WhereOperator.StartsWith, CaseSensitive = true, HasName = "Username")]
     public string Email { get; set; }
 }
 ```

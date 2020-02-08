@@ -11,10 +11,10 @@ namespace AspNetCore.IQueryable.Extensions
         {
             result = result.Filter(model);
 
-            if (model is IRestSort sort)
+            if (model is IQuerySort sort)
                 result = result.Sort(sort);
 
-            if (model is IRestPagination pagination)
+            if (model is IQueryPaging pagination)
                 result = result.Paginate(pagination);
 
             return result;

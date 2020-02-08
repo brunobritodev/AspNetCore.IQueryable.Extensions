@@ -1,6 +1,6 @@
 ﻿namespace AspNetCore.IQueryable.Extensions.Sort
 {
-    public interface IRestSort
+    public interface IQuerySort
     {
         string Sort { get; set; }
     }

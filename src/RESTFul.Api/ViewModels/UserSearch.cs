@@ -6,14 +6,14 @@ using AspNetCore.IQueryable.Extensions.Sort;
 
 namespace RESTFul.Api.ViewModels
 {
-    public class UserSearch : IRestSort, IRestPagination
+    public class UserSearch : IQuerySort, IQueryPaging
     {
         public string Username { get; set; }
 
-        [Rest(Operator = WhereOperator.GreaterThan)]
+        [QueryOperator(Operator = WhereOperator.GreaterThan)]
         public DateTime? Birthday { get; set; }
 
-        [Rest(Operator = WhereOperator.Contains, HasName = "Firstname")]
+        [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
         public string Name { get; set; }
 
         public int Offset { get; set; }

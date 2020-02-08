@@ -54,7 +54,7 @@ namespace AspNetCore.IQueryable.Extensions.Sort
             return source.Provider.CreateQuery<TEntity>(resultExpression);
         }
 
-        public static IQueryable<TEntity> Sort<TEntity, TModel>(this IQueryable<TEntity> result, TModel fields) where TModel : IRestSort
+        public static IQueryable<TEntity> Sort<TEntity, TModel>(this IQueryable<TEntity> result, TModel fields) where TModel : IQuerySort
         {
             return Sort(result, fields.Sort);
         }

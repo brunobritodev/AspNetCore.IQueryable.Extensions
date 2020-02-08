@@ -18,13 +18,13 @@ namespace AspNetCore.IQueryable.Extensions.Pagination
         public static IQueryable<TEntity> Paginate<TEntity, TModel>(this
                     IQueryable<TEntity> result,
                     TModel options)
-        where TModel : IRestPagination
+        where TModel : IQueryPaging
         {
             var attr = Attribute.GetCustomAttributes(PrimitiveExtensions.GetProperty<TModel>("Limit")).FirstOrDefault();
             // Check for the AnimalType attribute.
-            if (attr?.GetType() == typeof(RestAttribute))
+            if (attr?.GetType() == typeof(QueryOperatorAttribute))
             {
-                var data = (RestAttribute)attr;
+                var data = (QueryOperatorAttribute)attr;
                 if (data.Max > 0)
                     options.Limit = data.Max;
             }
