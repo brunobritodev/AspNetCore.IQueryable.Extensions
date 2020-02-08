@@ -58,7 +58,10 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 }
                 else
                 {
-                    outerExpression = Expression.And(outerExpression, expression);
+                    if (criteria.UseOr)
+                        outerExpression = Expression.Or(outerExpression, expression);
+                    else
+                        outerExpression = Expression.And(outerExpression, expression);
                 }
             }
 

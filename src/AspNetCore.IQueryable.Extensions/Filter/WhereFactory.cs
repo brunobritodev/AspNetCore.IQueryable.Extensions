@@ -1,7 +1,7 @@
-﻿using System;
+﻿using AspNetCore.IQueryable.Extensions.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCore.IQueryable.Extensions.Attributes;
 
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
@@ -45,7 +45,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 criterias.Add(criteria);
             }
 
-            return criterias;
+            return criterias.OrderBy(o => o.UseOr).ToList();
         }
     }
 }

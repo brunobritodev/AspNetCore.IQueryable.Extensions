@@ -12,5 +12,9 @@ namespace AspNetCore.IQueryable.Extensions.Attributes
         public string HasName { get; set; }
 
         public int Max { get; set; } = 0;
+
+        public bool OrComparison { get; set; } = false;
+
+        public bool ExclusiveOrComparison { get; set; } = false;
     }
 }

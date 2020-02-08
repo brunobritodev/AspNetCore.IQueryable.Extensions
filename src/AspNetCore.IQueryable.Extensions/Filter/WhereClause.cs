@@ -1,6 +1,6 @@
-﻿using System.Diagnostics;
+﻿using AspNetCore.IQueryable.Extensions.Attributes;
+using System.Diagnostics;
 using System.Reflection;
-using AspNetCore.IQueryable.Extensions.Attributes;
 
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
@@ -14,6 +14,8 @@ namespace AspNetCore.IQueryable.Extensions.Filter
         public bool UseNot { get; set; }
         public PropertyInfo Property { get; set; }
         public string FieldName { get; set; }
+        public bool UseOr { get; set; }
+
         public WhereClause()
         {
             Operator = WhereOperator.Equals;
@@ -27,9 +29,11 @@ namespace AspNetCore.IQueryable.Extensions.Filter
             UseNot = data.UseNot;
             CaseSensitive = data.CaseSensitive;
             FieldName = data.HasName;
+            UseOr = data.OrComparison;
             if (!string.IsNullOrEmpty(FieldName))
                 _customName = true;
         }
+
 
         public void UpdateValues(PropertyInfo propertyInfo)
         {
