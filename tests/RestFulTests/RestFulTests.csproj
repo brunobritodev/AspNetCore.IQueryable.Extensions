@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ASP.NET.Core.RESTFul.Api\AspNetCore.RESTFul.Extensions.csproj" />
+    <ProjectReference Include="..\..\src\ASP.NET.Core.RESTFul.Api\AspNetCore.IQueryable.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

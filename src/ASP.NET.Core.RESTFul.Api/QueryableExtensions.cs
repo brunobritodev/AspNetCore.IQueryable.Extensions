@@ -1,14 +1,12 @@
-﻿using System.Linq;
-using AspNetCore.IQueryable.Extensions.Filter;
+﻿using AspNetCore.IQueryable.Extensions.Filter;
 using AspNetCore.IQueryable.Extensions.Pagination;
 using AspNetCore.IQueryable.Extensions.Sort;
+using System.Linq;
 
 namespace AspNetCore.IQueryable.Extensions
 {
-    public static class RestFulExtensions
+    public static class QueryableExtensions
     {
-
-
         public static IQueryable<TEntity> Apply<TEntity, TModel>(this IQueryable<TEntity> result, TModel model) where TModel : new()
         {
             result = result.Filter(model);
