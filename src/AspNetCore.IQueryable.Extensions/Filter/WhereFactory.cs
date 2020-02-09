@@ -8,7 +8,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
     internal static class WhereFactory
     {
-        internal static List<WhereClause> GetCriterias<TSearchModel>(TSearchModel searchModel) where TSearchModel : new()
+        internal static List<WhereClause> GetCriterias(ICustomQueryable searchModel)
         {
             var type = searchModel.GetType();
             var criterias = new List<WhereClause>();

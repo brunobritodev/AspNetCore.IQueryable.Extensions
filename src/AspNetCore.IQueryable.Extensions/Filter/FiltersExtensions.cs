@@ -10,8 +10,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
         {
 
         }
-        public static IQueryable<TEntity> Filter<TEntity, TSearch>(
-            this IQueryable<TEntity> result, TSearch model) where TSearch : new()
+        public static IQueryable<TEntity> Filter<TEntity>(this IQueryable<TEntity> result, ICustomQueryable model)
         {
             if (model == null)
             {
