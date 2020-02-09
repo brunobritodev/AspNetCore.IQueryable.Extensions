@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
+﻿using AspNetCore.IQueryable.Extensions.Pagination;
+using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;
 using System.Collections.Generic;
 using System.Linq;
-using AspNetCore.IQueryable.Extensions.Pagination;
 using Xunit;
 
 namespace RestFulTests
@@ -56,6 +56,31 @@ namespace RestFulTests
             };
             var sortingByFieldName = _users.AsQueryable().Paginate(paginate);
             sortingByFieldName.Should().HaveCount(5);
+        }
+
+        [Fact]
+        public void ShouldReturnAlldataWhenLimitIsNotSpecified()
+        {
+            var paginate = new SinglePaging();
+            var pagingData = _users.AsQueryable().Paginate(paginate);
+            pagingData.Should().HaveCount(50);
+        }
+
+
+        [Fact]
+        public void ShouldReturnPartialDataWhenOffsetSpecified()
+        {
+            var paginate = new SinglePaging() { Offset = 10 };
+            var pagingData = _users.AsQueryable().Paginate(paginate);
+            pagingData.Should().HaveCount(40);
+        }
+
+        [Fact]
+        public void ShouldReturnPartialDataWhenLimitSpecified()
+        {
+            var paginate = new SinglePaging() { Limit = 15 };
+            var pagingData = _users.AsQueryable().Paginate(paginate);
+            pagingData.Should().HaveCount(15);
         }
     }
 }

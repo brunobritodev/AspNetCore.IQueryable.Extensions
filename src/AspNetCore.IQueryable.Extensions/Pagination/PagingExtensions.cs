@@ -29,7 +29,13 @@ namespace AspNetCore.IQueryable.Extensions.Pagination
                     options.Limit = data.Max;
             }
 
-            return result.Skip(options.Offset).Take(options.Limit);
+            if (options.Offset.HasValue)
+                result = result.Skip(options.Offset.Value);
+
+            if (options.Limit.HasValue)
+                result = result.Take(options.Limit.Value);
+
+            return result;
         }
     }
 }

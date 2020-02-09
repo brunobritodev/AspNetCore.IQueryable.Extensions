@@ -17,8 +17,8 @@ namespace RESTFul.Api.ViewModels
         [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
         public string Name { get; set; }
 
-        public int Offset { get; set; }
-        public int Limit { get; set; } = 10;
+        public int? Offset { get; set; }
+        public int? Limit { get; set; } = 10;
         public string Sort { get; set; }
     }
 

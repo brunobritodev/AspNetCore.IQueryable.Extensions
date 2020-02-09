@@ -22,8 +22,8 @@ namespace RestFulTests.Models
 
 
 
-        public int Offset { get; set; }
-        public int Limit { get; set; } = 10;
+        public int? Offset { get; set; }
+        public int? Limit { get; set; } = 10;
         public string Sort { get; set; }
     }
 }
