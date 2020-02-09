@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
@@ -6,15 +8,31 @@ namespace AspNetCore.IQueryable.Extensions
 {
     internal static class PrimitiveExtensions
     {
+        private static readonly ConcurrentDictionary<Type, List<PropertyInfo>> MemoryObjects;
+        static PrimitiveExtensions()
+        {
+            MemoryObjects = new ConcurrentDictionary<Type, List<PropertyInfo>>();
+        }
+
+        internal static List<PropertyInfo> GetAllProperties(this Type type)
+        {
+            if (MemoryObjects.ContainsKey(type))
+                return MemoryObjects[type];
+
+            var properties = type.GetProperties().ToList();
+            MemoryObjects.TryAdd(type, properties);
+            return properties;
+        }
+
         internal static PropertyInfo GetProperty<TEntity>(string name)
         {
             return typeof(TEntity)
-                .GetProperties()
+                .GetAllProperties()
                 .FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         }
         public static bool HasProperty(this Type type, string propertyName)
         {
-            return type.GetProperties().Any(a => a.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase));
+            return type.GetAllProperties().Any(a => a.Name.Equals(propertyName, StringComparison.OrdinalIgnoreCase));
         }
         /// <summary>
         /// Comma separated string: a,b,c

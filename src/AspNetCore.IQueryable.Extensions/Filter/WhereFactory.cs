@@ -6,25 +6,16 @@ using System.Linq;
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
 
-    internal class WhereFactory<TSearchModel>
-        where TSearchModel : new()
-
+    internal static class WhereFactory
     {
-        private readonly TSearchModel _searchModel;
-
-        public WhereFactory(TSearchModel searchModel)
+        internal static List<WhereClause> GetCriterias<TSearchModel>(TSearchModel searchModel) where TSearchModel : new()
         {
-            _searchModel = searchModel;
-        }
-
-        public List<WhereClause> GetCriterias()
-        {
-            var type = _searchModel.GetType();
+            var type = searchModel.GetType();
             var criterias = new List<WhereClause>();
             // Iterate through all the methods of the class.
             foreach (var propertyInfo in type.GetProperties())
             {
-                if (Convert.GetTypeCode(propertyInfo.GetValue(_searchModel, null)) == TypeCode.Object)
+                if (Convert.GetTypeCode(propertyInfo.GetValue(searchModel, null)) == TypeCode.Object)
                     continue;
 
                 var criteria = new WhereClause();
@@ -37,7 +28,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                     criteria.UpdateAttributeData(data);
                 }
 
-                var customValue = propertyInfo.GetValue(_searchModel, null);
+                var customValue = propertyInfo.GetValue(searchModel, null);
                 if (customValue == null)
                     continue;
 

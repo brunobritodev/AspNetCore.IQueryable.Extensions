@@ -1,13 +1,14 @@
-﻿using System;
-using AspNetCore.IQueryable.Extensions.Attributes;
+﻿using AspNetCore.IQueryable.Extensions.Attributes;
 using AspNetCore.IQueryable.Extensions.Filter;
 using AspNetCore.IQueryable.Extensions.Pagination;
 using AspNetCore.IQueryable.Extensions.Sort;
+using System;
 
 namespace RESTFul.Api.ViewModels
 {
     public class UserSearch : IQuerySort, IQueryPaging
     {
+        [QueryOperator(Operator = WhereOperator.GreaterThan, UseOr = true)]
         public string Username { get; set; }
 
         [QueryOperator(Operator = WhereOperator.GreaterThan)]

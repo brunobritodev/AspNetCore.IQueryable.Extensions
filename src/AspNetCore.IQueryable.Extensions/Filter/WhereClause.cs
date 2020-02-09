@@ -5,7 +5,7 @@ using System.Reflection;
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
     [DebuggerDisplay("{FieldName}")]
-    internal class WhereClause
+    public class WhereClause
     {
         private bool _customName;
 
@@ -29,7 +29,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
             UseNot = data.UseNot;
             CaseSensitive = data.CaseSensitive;
             FieldName = data.HasName;
-            UseOr = data.OrComparison;
+            UseOr = data.UseOr;
             if (!string.IsNullOrEmpty(FieldName))
                 _customName = true;
         }

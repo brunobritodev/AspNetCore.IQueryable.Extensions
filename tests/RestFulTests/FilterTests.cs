@@ -52,7 +52,7 @@ namespace RestFulTests
                 Username = _users.Last().Username
             };
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
-            sortingByFieldName.Should().HaveCount(2);
+            sortingByFieldName.Should().HaveCountGreaterOrEqualTo(2);
         }
 
 
@@ -66,7 +66,7 @@ namespace RestFulTests
                 Username = _users.Last().Username
             };
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
-            sortingByFieldName.Should().HaveCount(2);
+            sortingByFieldName.Should().HaveCountLessOrEqualTo(2);
         }
 
         [Fact]

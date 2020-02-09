@@ -6,6 +6,10 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 {
     public static class FiltersExtensions
     {
+        static FiltersExtensions()
+        {
+
+        }
         public static IQueryable<TEntity> Filter<TEntity, TSearch>(
             this IQueryable<TEntity> result, TSearch model) where TSearch : new()
         {
@@ -14,8 +18,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 return result;
             }
 
-            var processor = new WhereFactory<TSearch>(model);
-            var criterias = processor.GetCriterias();
+            var criterias = WhereFactory.GetCriterias(model);
 
             Expression outerExpression = null;
             var parameterExpression = Expression.Parameter(typeof(TEntity), "model");
