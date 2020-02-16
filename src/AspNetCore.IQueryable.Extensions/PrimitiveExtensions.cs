@@ -13,6 +13,21 @@ namespace AspNetCore.IQueryable.Extensions
         {
             MemoryObjects = new ConcurrentDictionary<Type, List<PropertyInfo>>();
         }
+        public static bool IsPropertyACollection(this PropertyInfo property)
+        {
+            return IsGenericEnumerable(property.PropertyType) || property.PropertyType.IsArray;
+        }
+        public static bool IsPropertyObject(this PropertyInfo property, object value)
+        {
+            return Convert.GetTypeCode(property.GetValue(value, null)) == TypeCode.Object;
+        }
+        private static bool IsGenericEnumerable(Type type)
+        {
+            return type.IsGenericType &&
+                   type.GetInterfaces().Any(
+                       ti => (ti == typeof(IEnumerable<>) || ti.Name == "IEnumerable"));
+        }
+
 
         internal static List<PropertyInfo> GetAllProperties(this Type type)
         {

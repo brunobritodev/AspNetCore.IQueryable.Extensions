@@ -17,7 +17,7 @@ namespace RestFulTests
         }
 
         [Fact]
-        public void ShouldPaging()
+        public void Should_Paging()
         {
             var sortingByFieldName = _users.AsQueryable().Paginate(5, 0);
             sortingByFieldName.Should().HaveCount(5);
@@ -27,14 +27,14 @@ namespace RestFulTests
         [InlineData(0)]
         [InlineData(-10)]
         [InlineData(-166)]
-        public void ShouldGetDefaultPagingWhenLimitIsZeroOrNegative(int limit)
+        public void Should_Get_Default_Paging_When_Limit_Is_Zero_Or_Negative(int limit)
         {
             var sortingByFieldName = _users.AsQueryable().Paginate(limit, 0);
             sortingByFieldName.Should().HaveCount(10);
         }
 
         [Fact]
-        public void ShouldPagingFromInterfaceImplementation()
+        public void Should_Paging_From_Interface_Implementation()
         {
             var paginate = new UserSearch()
             {
@@ -47,7 +47,7 @@ namespace RestFulTests
 
 
         [Fact]
-        public void ShouldLimitNotBiggerThanAtrributeMax()
+        public void Should_Limit_Not_Bigger_Than_Atrribute_Max()
         {
             var paginate = new PagingMax()
             {
@@ -59,7 +59,7 @@ namespace RestFulTests
         }
 
         [Fact]
-        public void ShouldReturnAlldataWhenLimitIsNotSpecified()
+        public void Should_Return_Alldata_When_Limit_Is_Not_Specified()
         {
             var paginate = new SinglePaging();
             var pagingData = _users.AsQueryable().Paginate(paginate);
@@ -68,7 +68,7 @@ namespace RestFulTests
 
 
         [Fact]
-        public void ShouldReturnPartialDataWhenOffsetSpecified()
+        public void Should_Return_Partial_Data_When_Offset_Specified()
         {
             var paginate = new SinglePaging() { Offset = 10 };
             var pagingData = _users.AsQueryable().Paginate(paginate);
@@ -76,7 +76,7 @@ namespace RestFulTests
         }
 
         [Fact]
-        public void ShouldReturnPartialDataWhenLimitSpecified()
+        public void Should_Return_Partial_Data_When_Limit_Specified()
         {
             var paginate = new SinglePaging() { Limit = 15 };
             var pagingData = _users.AsQueryable().Paginate(paginate);

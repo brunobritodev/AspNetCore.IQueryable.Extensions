@@ -1,15 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Reflection;
 
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
     public static class FiltersExtensions
     {
-        static FiltersExtensions()
-        {
-
-        }
         public static IQueryable<TEntity> Filter<TEntity>(this IQueryable<TEntity> result, ICustomQueryable model)
         {
             if (model == null)
@@ -17,99 +14,94 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 return result;
             }
 
-            var criterias = WhereFactory.GetCriterias(model);
+            Expression lastExpression = null;
 
-            Expression outerExpression = null;
-            var parameterExpression = Expression.Parameter(typeof(TEntity), "model");
-            foreach (var criteria in criterias)
+            var operations = ExpressionFactory.GetOperators<TEntity>(model);
+            foreach (var expression in operations.Ordered())
             {
-                if (!typeof(TEntity).HasProperty(criteria.FieldName) && !criteria.FieldName.Contains("."))
-                    continue;
-
-                dynamic propertyValue = parameterExpression;
-                foreach (var part in criteria.FieldName.Split('.'))
+                if (!expression.Criteria.CaseSensitive)
                 {
-                    propertyValue = Expression.PropertyOrField(propertyValue, part);
-
-                }
-
-                var filterValue = GetClosureOverConstant(criteria.Property.GetValue(model, null), criteria.Property.PropertyType);
-
-
-                if (!criteria.CaseSensitive)
-                {
-                    propertyValue = Expression.Call(propertyValue,
+                    expression.FieldToFilter = Expression.Call(expression.FieldToFilter,
                         typeof(string).GetMethods()
                             .First(m => m.Name == "ToUpper" && m.GetParameters().Length == 0));
 
-                    filterValue = Expression.Call(filterValue,
+                    expression.FilterBy = Expression.Call(expression.FilterBy,
                         typeof(string).GetMethods()
                             .First(m => m.Name == "ToUpper" && m.GetParameters().Length == 0));
                 }
 
-                var expression = GetExpression(criteria, filterValue, propertyValue);
 
-                if (criteria.UseNot)
+                var actualExpression = GetExpression<TEntity>(expression);
+
+                if (expression.Criteria.UseNot)
                 {
-                    expression = Expression.Not(expression);
+                    actualExpression = Expression.Not(actualExpression);
                 }
 
-                if (outerExpression == null)
+                if (lastExpression == null)
                 {
-                    outerExpression = expression;
+                    lastExpression = actualExpression;
                 }
                 else
                 {
-                    if (criteria.UseOr)
-                        outerExpression = Expression.Or(outerExpression, expression);
+                    if (expression.Criteria.UseOr)
+                        lastExpression = Expression.Or(lastExpression, actualExpression);
                     else
-                        outerExpression = Expression.And(outerExpression, expression);
+                        lastExpression = Expression.And(lastExpression, actualExpression);
                 }
             }
 
-            return outerExpression == null
+            return lastExpression == null
                 ? result
-                : result.Where(Expression.Lambda<Func<TEntity, bool>>(outerExpression, parameterExpression));
+                : result.Where(Expression.Lambda<Func<TEntity, bool>>(lastExpression, operations.ParameterExpression));
         }
 
-        private static Expression GetExpression(WhereClause filterTerm, dynamic filterValue, Expression propertyValue)
+        private static Expression GetExpression<TEntity>(ExpressionParser expression)
         {
-            switch (filterTerm.Operator)
+            switch (expression.Criteria.Operator)
             {
                 case WhereOperator.Equals:
-                    return Expression.Equal(propertyValue, filterValue);
+                    return Expression.Equal(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.NotEquals:
-                    return Expression.NotEqual(propertyValue, filterValue);
+                    return Expression.NotEqual(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.GreaterThan:
-                    return Expression.GreaterThan(propertyValue, filterValue);
+                    return Expression.GreaterThan(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.LessThan:
-                    return Expression.LessThan(propertyValue, filterValue);
+                    return Expression.LessThan(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.GreaterThanOrEqualTo:
-                    return Expression.GreaterThanOrEqual(propertyValue, filterValue);
+                    return Expression.GreaterThanOrEqual(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.LessThanOrEqualTo:
-                    return Expression.LessThanOrEqual(propertyValue, filterValue);
+                    return Expression.LessThanOrEqual(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.Contains:
-                    return Expression.Call(propertyValue,
-                        typeof(string).GetMethods()
-                            .First(m => m.Name == "Contains" && m.GetParameters().Length == 1),
-                        filterValue);
+                    return ContainsExpression<TEntity>(expression);
                 case WhereOperator.StartsWith:
-                    return Expression.Call(propertyValue,
+                    return Expression.Call(expression.FieldToFilter,
                         typeof(string).GetMethods()
                             .First(m => m.Name == "StartsWith" && m.GetParameters().Length == 1),
-                        filterValue);
+                        expression.FilterBy);
                 default:
-                    return Expression.Equal(propertyValue, filterValue);
+                    return Expression.Equal(expression.FieldToFilter, expression.FilterBy);
             }
         }
 
-        // Workaround to ensure that the filter value gets passed as a parameter in generated SQL from EF Core
-        // See https://github.com/aspnet/EntityFrameworkCore/issues/3361
-        // Expression.Constant passed the target type to allow Nullable comparison
-        // See http://bradwilson.typepad.com/blog/2008/07/creating-nullab.html
-        private static Expression GetClosureOverConstant<T>(T constant, Type targetType)
+        private static Expression ContainsExpression<TEntity>(ExpressionParser expression)
         {
-            return Expression.Constant(constant, targetType);
+            if (expression.Criteria.Property.IsPropertyACollection())
+            {
+                var methodToApplyContains = typeof(Enumerable).GetMethods(BindingFlags.Static | BindingFlags.Public)
+                    .Single(x => x.Name == "Contains" && x.GetParameters().Length == 2)
+                    .MakeGenericMethod(expression.FieldToFilter.Type);
+                return Expression.Call(methodToApplyContains, expression.FilterBy, expression.FieldToFilter);
+            }
+            else
+            {
+                var methodToApplyContains = expression.FieldToFilter.Type.GetMethods()
+                    .First(m => m.Name == "Contains" && m.GetParameters().Length == 1);
+
+                return Expression.Call(expression.FieldToFilter, methodToApplyContains, expression.FilterBy);
+            }
+
         }
+
     }
 }

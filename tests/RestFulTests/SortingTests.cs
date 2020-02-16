@@ -18,7 +18,7 @@ namespace RestFulTests
         }
 
         [Fact]
-        public void ShouldSortByUsername()
+        public void Should_Sort_By_Username()
         {
             var sortingByFieldName = _users.AsQueryable().Sort("username").Select(s => s.Username).ToList();
             var sortingByOriginal = _users.OrderBy(s => s.Username).Select(s => s.Username).ToList();
@@ -29,7 +29,7 @@ namespace RestFulTests
         }
 
         [Fact]
-        public void ShouldSortByUsernameDescending()
+        public void Should_Sort_By_Username_Descending()
         {
             var sortingByFieldName = _users.AsQueryable().Sort("-username").Select(s => s.Username).ToList();
             var sortingByOriginal = _users.OrderByDescending(s => s.Username).Select(s => s.Username).ToList();
@@ -41,7 +41,7 @@ namespace RestFulTests
 
 
         [Fact]
-        public void ShouldSortByUsernameDescendingThenByFirstname()
+        public void Should_Sort_By_Username__Descending_Then_By_Firstname()
         {
             var sortingByFieldName = _users.AsQueryable().Sort("-username, firstname").ToList();
             var sortingByOriginal = _users.OrderByDescending(s => s.Username).ThenBy(s => s.FirstName).ToList();
@@ -54,7 +54,7 @@ namespace RestFulTests
 
 
         [Fact]
-        public void ShouldSortFromInterfaceImplementation()
+        public void Should_Sort_From_Interface_Implementation()
         {
             var sort = new UserSearch()
             {
@@ -72,7 +72,7 @@ namespace RestFulTests
 
 
         [Fact]
-        public void ShouldNotThrowErrorWhenSortFieldDoesntExist()
+        public void Should_Not_Throw_Error_When_Sort_Field_Doesnt_Exist()
         {
             var sort = new UserSearch()
             {
