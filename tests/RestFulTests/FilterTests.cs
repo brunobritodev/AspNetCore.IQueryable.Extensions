@@ -52,11 +52,8 @@ namespace RestFulTests
                 Ssn = _users.First().SocialNumber.Identification,
                 Username = _users.Last().Username
             };
-            var sortingByFieldName = _users.AsQueryable().FilterOld(userSearch);
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
             sortingByFieldName.Should().HaveCountGreaterOrEqualTo(2);
-
-
-            var sortingByFieldNameNew = _users.AsQueryable().Filter(userSearch);
         }
 
 

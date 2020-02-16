@@ -7,22 +7,6 @@ using System.Reflection;
 
 namespace AspNetCore.IQueryable.Extensions.Filter
 {
-    internal class ExpressionParserCollection : List<ExpressionParser>
-    {
-        public ParameterExpression ParameterExpression { get; set; }
-
-        public List<ExpressionParser> Ordered()
-        {
-            return this.OrderBy(b => b.Criteria.UseOr).ToList();
-        }
-    }
-    internal class ExpressionParser
-    {
-        public WhereClause Criteria { get; set; }
-        public Expression FieldToFilter { get; set; }
-        public Expression FilterBy { get; set; }
-    }
-
     internal static class ExpressionFactory
     {
         internal static ExpressionParserCollection GetOperators<TEntity>(ICustomQueryable model)
