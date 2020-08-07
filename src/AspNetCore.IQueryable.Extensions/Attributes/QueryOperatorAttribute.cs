@@ -10,7 +10,7 @@ namespace AspNetCore.IQueryable.Extensions.Attributes
         public bool UseNot { get; set; } = false;
         public bool CaseSensitive { get; set; } = true;
         public string HasName { get; set; }
-        public int Max { get; set; } = 0;
+        public int Max { get; set; }
         public bool UseOr { get; set; } = false;
     }
 }

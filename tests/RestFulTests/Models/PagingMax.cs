@@ -7,7 +7,7 @@ namespace RestFulTests.Models
     {
         public int? Offset { get; set; }
         [QueryOperator(Max = 5)]
-        public int? Limit { get; set; } = 10;
+        public int? Limit { get; set; }
     }
     public class SinglePaging : IQueryPaging
     {

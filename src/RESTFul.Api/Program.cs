@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using RESTFul.Api.Contexts;
+using System.Threading.Tasks;
 
 namespace RESTFul.Api
 {
@@ -7,7 +10,11 @@ namespace RESTFul.Api
     {
         public static void Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            var host = CreateHostBuilder(args).Build();
+
+            Task.WaitAll(DbMigrationHelpers.EnsureSeedData(host.Services.CreateScope()));
+
+            host.Run();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
@@ -16,5 +23,18 @@ namespace RESTFul.Api
                 {
                     webBuilder.UseStartup<Startup>();
                 });
+    }
+
+    public static class DbMigrationHelpers
+    {
+
+        public static async Task EnsureSeedData(IServiceScope serviceScope)
+        {
+            var serviceProvider = serviceScope.ServiceProvider;
+            using var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
+            var appContext = scope.ServiceProvider.GetRequiredService<RestfulContext>();
+
+            await appContext.Database.EnsureCreatedAsync();
+        }
     }
 }

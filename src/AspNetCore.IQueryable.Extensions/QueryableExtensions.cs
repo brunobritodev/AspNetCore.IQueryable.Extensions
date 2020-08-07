@@ -7,7 +7,7 @@ namespace AspNetCore.IQueryable.Extensions
 {
     public static class QueryableExtensions
     {
-        public static IQueryable<TEntity> Apply<TEntity>(this IQueryable<TEntity> result, ICustomQueryable model) 
+        public static IQueryable<TEntity> Apply<TEntity>(this IQueryable<TEntity> result, ICustomQueryable model)
         {
             result = result.Filter(model);
 

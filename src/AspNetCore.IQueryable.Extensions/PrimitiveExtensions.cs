@@ -38,7 +38,12 @@ namespace AspNetCore.IQueryable.Extensions
             MemoryObjects.TryAdd(type, properties);
             return properties;
         }
-
+        internal static PropertyInfo GetProperty(Type type, string name)
+        {
+            return type
+                .GetAllProperties()
+                .FirstOrDefault(p => p.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        }
         internal static PropertyInfo GetProperty<TEntity>(string name)
         {
             return typeof(TEntity)

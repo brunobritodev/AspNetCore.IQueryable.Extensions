@@ -29,7 +29,7 @@ namespace RESTFul.Api.Service
         {
             if (_context.Users.Any())
                 return;
-            var users = Range(1, 10).Select(index => new User
+            var users = Range(1, 200).Select(index => new User
             {
                 FirstName = Name.FirstName,
                 LastName = Name.LastName,

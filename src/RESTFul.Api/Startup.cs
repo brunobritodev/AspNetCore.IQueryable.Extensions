@@ -56,7 +56,11 @@ namespace RESTFul.Api
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddTransient<IDomainNotificationMediatorService, DomainNotificationMediatorService>();
             services.AddTransient<IDummyUserService, DummyUserService>();
-            services.AddEntityFrameworkInMemoryDatabase().AddDbContext<RestfulContext>(options => options.UseInMemoryDatabase("restful"));
+            services.AddEntityFrameworkInMemoryDatabase().AddDbContext<RestfulContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                options.EnableSensitiveDataLogging();
+            });
             services.AddAutoMapper(typeof(Startup));
         }
 

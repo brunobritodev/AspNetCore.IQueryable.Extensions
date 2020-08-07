@@ -12,10 +12,12 @@ namespace RestFulTests
     public class FilterTests
     {
         private readonly List<User> _users;
+
         public FilterTests()
         {
             _users = UserFaker.GenerateUserViewModel().Generate(50);
         }
+
 
         [Fact]
         public void Should_Filter_By_Has_Name_Attribute()
@@ -24,6 +26,7 @@ namespace RestFulTests
             {
                 Name = _users.Last().FirstName
             };
+
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
             sortingByFieldName.Should().HaveCountGreaterOrEqualTo(1);
         }
@@ -111,4 +114,5 @@ namespace RestFulTests
 
         }
     }
+
 }

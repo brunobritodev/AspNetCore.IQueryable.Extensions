@@ -1,4 +1,5 @@
-﻿using AspNetCore.IQueryable.Extensions.Pagination;
+﻿using AspNetCore.IQueryable.Extensions;
+using AspNetCore.IQueryable.Extensions.Pagination;
 using FluentAssertions;
 using RestFulTests.Fakers;
 using RestFulTests.Models;
@@ -42,9 +43,9 @@ namespace RestFulTests
                 Offset = 0
             };
             var sortingByFieldName = _users.AsQueryable().Paginate(paginate);
+
             sortingByFieldName.Should().HaveCount(5);
         }
-
 
         [Fact]
         public void Should_Limit_Not_Bigger_Than_Atrribute_Max()
@@ -55,6 +56,17 @@ namespace RestFulTests
                 Offset = 0
             };
             var sortingByFieldName = _users.AsQueryable().Paginate(paginate);
+            sortingByFieldName.Should().HaveCount(5);
+        }
+
+        [Fact]
+        public void Should_Respect_Attribute_Max_When_Limit_Is_Not_Set()
+        {
+            var paginate = new PagingMax()
+            {
+                Offset = 0
+            };
+            var sortingByFieldName = _users.AsQueryable().Apply(paginate);
             sortingByFieldName.Should().HaveCount(5);
         }
 
