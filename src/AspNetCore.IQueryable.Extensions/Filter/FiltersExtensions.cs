@@ -14,6 +14,19 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 return result;
             }
 
+            var lastExpression = result.FilterExpression(model);
+            return lastExpression == null
+                ? result
+                : result.Where(lastExpression);
+        }
+
+        public static Expression<Func<TEntity, bool>> FilterExpression<TEntity>(this IQueryable<TEntity> result, ICustomQueryable model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
             Expression lastExpression = null;
 
             var operations = ExpressionFactory.GetOperators<TEntity>(model);
@@ -51,10 +64,10 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 }
             }
 
-            return lastExpression == null
-                ? result
-                : result.Where(Expression.Lambda<Func<TEntity, bool>>(lastExpression, operations.ParameterExpression));
+            return lastExpression != null ? Expression.Lambda<Func<TEntity, bool>>(lastExpression, operations.ParameterExpression) : null;
         }
+
+
 
         private static Expression GetExpression<TEntity>(ExpressionParser expression)
         {
