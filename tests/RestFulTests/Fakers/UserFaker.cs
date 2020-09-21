@@ -19,6 +19,7 @@ namespace RestFulTests.Fakers
                 .RuleFor(u => u.Id, f => f.Random.Int())
                 .RuleFor(u => u.Username, f => f.Person.UserName)
                 .RuleFor(u => u.Active, f => f.Random.Bool())
+                .RuleFor(u => u.Age, f => f.Random.Int(1, 85))
                 .RuleFor(u => u.SocialNumber, f => new Ssn() { Identification = f.Person.Ssn() })
                 .RuleFor(u => u.Claims, claims);
         }

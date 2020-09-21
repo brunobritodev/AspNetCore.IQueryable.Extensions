@@ -71,6 +71,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
         private static Expression GetExpression<TEntity>(ExpressionParser expression)
         {
+
             switch (expression.Criteria.Operator)
             {
                 case WhereOperator.Equals:
@@ -115,6 +116,7 @@ namespace AspNetCore.IQueryable.Extensions.Filter
             }
 
         }
+
 
     }
 }

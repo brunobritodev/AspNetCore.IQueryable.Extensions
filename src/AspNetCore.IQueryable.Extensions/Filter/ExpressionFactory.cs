@@ -34,14 +34,28 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
                 var expressionData = new ExpressionParser();
                 expressionData.FieldToFilter = propertyValue;
-                expressionData.FilterBy = GetClosureOverConstant(criteria.Property.GetValue(model, null), criteria.Property.PropertyType);
+                expressionData.FilterBy = GetClosureOverConstant(criteria.Property.GetValue(model, null), GetNonNullable(criteria.Property.PropertyType));
                 expressionData.Criteria = criteria;
-                expressions.Add(expressionData);
+
+                if (criteria.Property.GetValue(model, null) != null)
+                    expressions.Add(expressionData);
             }
 
             return expressions;
         }
+        private static Type GetNonNullable(Type propertyType)
+        {
+            if (propertyType.IsGenericType && propertyType.GetGenericTypeDefinition() == typeof(Nullable<>))
+            {
+                return Nullable.GetUnderlyingType(propertyType);
+            }
 
+            return propertyType;
+        }
+        static bool IsNullableType(Type t)
+        {
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
+        }
         internal static WhereClause GetCriteria(ICustomQueryable model, PropertyInfo propertyInfo)
         {
             bool isCollection = propertyInfo.IsPropertyACollection();
@@ -50,11 +64,11 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
             var criteria = new WhereClause();
 
-            var attr = Attribute.GetCustomAttributes(propertyInfo).FirstOrDefault();
+            var attr = Attribute.GetCustomAttributes(propertyInfo);
             // Check for the AnimalType attribute.
-            if (attr?.GetType() == typeof(QueryOperatorAttribute))
+            if (attr.Any(a => a.GetType() == typeof(QueryOperatorAttribute)))
             {
-                var data = (QueryOperatorAttribute)attr;
+                var data = (QueryOperatorAttribute)attr.First(a => a.GetType() == typeof(QueryOperatorAttribute));
                 criteria.UpdateAttributeData(data);
                 if (data.Operator != WhereOperator.Contains && isCollection)
                     throw new ArgumentException($"{propertyInfo.Name} - For array the only Operator available is Contains");

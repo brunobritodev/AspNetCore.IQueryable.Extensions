@@ -15,6 +15,7 @@ namespace RestFulTests.Models
         public DateTime? Birthday { get; set; }
         public string Username { get; set; }
         public bool Active { get; set; }
+        public int Age { get; set; }
         public Ssn SocialNumber { get; set; }
         public IEnumerable<Claim> Claims { get; set; }
     }

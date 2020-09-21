@@ -44,6 +44,16 @@ namespace RestFulTests
             sortingByFieldName.Should().HaveCount(1);
         }
 
+        [Fact]
+        public void Should_Apply_Allfilter_For_Two_Fields_For_Same_Attribute()
+        {
+            var userSearch = new UserSearch()
+            {
+                OlderThan = 18
+            };
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
+            sortingByFieldName.Should().HaveCountGreaterOrEqualTo(1);
+        }
 
 
         [Fact]
@@ -83,6 +93,7 @@ namespace RestFulTests
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
             sortingByFieldName.Should().HaveCount(1);
         }
+
 
         [Fact]
         public void Should_Find_User_Id_From_Array()

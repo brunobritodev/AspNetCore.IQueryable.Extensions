@@ -22,6 +22,13 @@ namespace RestFulTests.Models
         [QueryOperator(Operator = WhereOperator.Contains, HasName = "SocialNumber.Identification")]
         public string Ssn { get; set; }
 
+
+        [QueryOperator(Operator = WhereOperator.GreaterThanOrEqualTo, HasName = "Age")]
+        public int? OlderThan { get; set; }
+
+        [QueryOperator(Operator = WhereOperator.LessThanOrEqualTo, HasName = "Age")]
+        public int? YoungerThan { get; set; }
+
         [QueryOperator(Operator = WhereOperator.Contains)]
         public IEnumerable<int> Id { get; set; }
 
