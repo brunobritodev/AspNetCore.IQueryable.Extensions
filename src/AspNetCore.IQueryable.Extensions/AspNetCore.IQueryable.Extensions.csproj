@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFrameworks>netstandard2.0;netstandard2.1</TargetFrameworks>
     <Version>3.1.0</Version>
     <Authors>Bruno Brito</Authors>
     <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon-nuget.png</PackageIconUrl>
@@ -12,11 +12,21 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <RepositoryUrl>https://github.com/brunohbrito/AspNet.Core.RESTFul.Extensions/</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageProjectUrl>https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions</PackageProjectUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <RootNamespace>AspNetCore.IQueryable.Extensions</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
- 
+
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <AssemblyTitle>IQueryable Extensions .NET Standard 2.0</AssemblyTitle>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+    <AssemblyTitle>IQueryable Extensions .NET Standard 2.1</AssemblyTitle>
+  </PropertyGroup>
+
 </Project>

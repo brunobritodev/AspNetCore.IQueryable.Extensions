@@ -59,7 +59,7 @@ namespace AspNetCore.IQueryable.Extensions
         /// </summary>
         public static string[] Fields(this string fields)
         {
-            return fields.Split(",");
+            return fields.Split(',');
         }
 
         public static string FieldName(this string field)

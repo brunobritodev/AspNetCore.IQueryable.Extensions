@@ -18,3 +18,16 @@ foreach ($file in $files) {
 		nuget add $file.Name -source $source
 	}
 }
+
+$files = Get-ChildItem -recurse -filter *.snupkg
+
+foreach ($file in $files) {
+	if($prod)
+	{
+		dotnet nuget push $file.Name -s $source
+	}
+	else
+	{
+		nuget add $file.Name -source $source
+	}
+}

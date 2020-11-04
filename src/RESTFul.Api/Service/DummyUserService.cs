@@ -77,7 +77,7 @@ namespace RESTFul.Api.Service
 
         public async Task Update(User user)
         {
-            if (CheckIfUserIsValid(user))
+            if (user != null && CheckIfUserIsValid(user))
                 return;
 
             var actua = await Find(user.Username).ConfigureAwait(false);

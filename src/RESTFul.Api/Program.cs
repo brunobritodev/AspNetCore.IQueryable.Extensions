@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RESTFul.Api.Contexts;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace RESTFul.Api
@@ -12,7 +13,7 @@ namespace RESTFul.Api
         {
             var host = CreateHostBuilder(args).Build();
 
-            Task.WaitAll(DbMigrationHelpers.EnsureSeedData(host.Services.CreateScope()));
+            Task.WaitAll(DbMigrationHelpers.EnsureSeedData(serviceScope: host.Services.CreateScope()));
 
             host.Run();
         }
@@ -30,11 +31,13 @@ namespace RESTFul.Api
 
         public static async Task EnsureSeedData(IServiceScope serviceScope)
         {
-            var serviceProvider = serviceScope.ServiceProvider;
+            Debug.Assert(serviceScope != null, nameof(serviceScope) + " != null");
+
+            var serviceProvider = serviceScope?.ServiceProvider;
             using var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var appContext = scope.ServiceProvider.GetRequiredService<RestfulContext>();
 
-            await appContext.Database.EnsureCreatedAsync();
+            await appContext.Database.EnsureCreatedAsync().ConfigureAwait(false);
         }
     }
 }
