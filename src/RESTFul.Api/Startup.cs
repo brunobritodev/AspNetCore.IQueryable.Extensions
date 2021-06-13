@@ -2,18 +2,19 @@ using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using RESTFul.Api.Contexts;
-using RESTFul.Api.Models;
 using RESTFul.Api.Notification;
 using RESTFul.Api.Service;
 using RESTFul.Api.Service.Interfaces;
-using RESTFul.Api.ViewModels;
 using System;
+using System.Linq;
+using System.Net.Mime;
 using System.Reflection;
 
 namespace RESTFul.Api
@@ -54,6 +55,15 @@ namespace RESTFul.Api
 
             });
             services.AddMediatR(Assembly.GetExecutingAssembly());
+
+            services.AddResponseCaching();
+            services.AddResponseCompression(options =>
+            {
+                options.Providers.Add<BrotliCompressionProvider>();
+                options.Providers.Add<GzipCompressionProvider>();
+                options.EnableForHttps = true;
+                options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(new[] { "image/jpeg", "image/png", "application/font-woff2", "image/svg+xml", MediaTypeNames.Application.Json });
+            });
             services.AddTransient<IDomainNotificationMediatorService, DomainNotificationMediatorService>();
             services.AddTransient<IDummyUserService, DummyUserService>();
             services.AddEntityFrameworkInMemoryDatabase().AddDbContext<RestfulContext>(options =>
@@ -70,6 +80,15 @@ namespace RESTFul.Api
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "SSO Api Management");
+                    c.OAuthClientId("Swagger");
+                    c.OAuthClientSecret("swagger");
+                    c.OAuthAppName("SSO Management Api");
+                    c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
+                });
             }
 
             app.UseHttpsRedirection();
@@ -77,28 +96,10 @@ namespace RESTFul.Api
             app.UseRouting();
 
             app.UseAuthorization();
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SSO Api Management");
-                c.OAuthClientId("Swagger");
-                c.OAuthClientSecret("swagger");
-                c.OAuthAppName("SSO Management Api");
-                c.OAuthUseBasicAuthenticationWithAccessCodeGrant();
-            });
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
-        }
-    }
-
-    public class BloggerDtosProfile : AutoMapper.Profile
-    {
-        public BloggerDtosProfile()
-        {
-            CreateMap<User, UserViewModel>();
-            // Add other CreateMap’s for any other configs
         }
     }
 }

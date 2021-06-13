@@ -34,11 +34,13 @@ namespace RESTFul.Api.Controllers
         public async Task<ActionResult<List<UserViewModel>>> Get([FromQuery] UserSearch search)
         {
             var result = _dummyUserService.Query().Apply(search);
-            
+
             return ResponseGet(await _mapper.ProjectTo<UserViewModel>(result).ToListAsync());
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("{username}"),
+         HttpHead("{username}"),
+         ResponseCache(Location = ResponseCacheLocation.Any, Duration = 600)]
         public async Task<ActionResult<User>> Get(string username)
         {
             return ResponseGet(await _dummyUserService.Find(username).ConfigureAwait(false));
