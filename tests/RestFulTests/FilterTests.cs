@@ -31,6 +31,18 @@ namespace RestFulTests
             sortingByFieldName.Should().HaveCountGreaterOrEqualTo(1);
         }
 
+        [Fact]
+        public void Should_Filter_By_Guid()
+        {
+            var userSearch = new UserSearch()
+            {
+                CustomId = _users.Last().CustomId
+            };
+
+            var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
+            sortingByFieldName.Should().HaveCountGreaterOrEqualTo(1);
+        }
+
 
         [Fact]
         public void Should_Apply_Allfilter_Based_In_Class()
