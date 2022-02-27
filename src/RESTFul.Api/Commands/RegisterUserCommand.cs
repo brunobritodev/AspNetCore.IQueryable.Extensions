@@ -22,7 +22,8 @@ namespace RESTFul.Api.Commands
                 FirstName = FirstName,
                 LastName = LastName,
                 Gender = Gender,
-                Username = Username
+                Username = Username,
+                CustomId = Guid.NewGuid()
             };
         }
     }

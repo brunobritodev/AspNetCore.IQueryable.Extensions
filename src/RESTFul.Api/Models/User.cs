@@ -13,6 +13,7 @@ namespace RESTFul.Api.Models
         public string Gender { get; set; }
         public DateTime? Birthday { get; set; }
         public int Id { get; set; }
+        public Guid CustomId { get; set; }
         public string Username { get; set; }
         public bool Active { get; set; }
         public IEnumerable<Claim> Claims { get; set; }

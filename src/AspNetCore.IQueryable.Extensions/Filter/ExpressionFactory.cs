@@ -59,8 +59,8 @@ namespace AspNetCore.IQueryable.Extensions.Filter
         internal static WhereClause GetCriteria(ICustomQueryable model, PropertyInfo propertyInfo)
         {
             bool isCollection = propertyInfo.IsPropertyACollection();
-            if (!isCollection && propertyInfo.IsPropertyObject(model))
-                return null;
+            //if (!isCollection && propertyInfo.IsPropertyObject(model))
+            //    return null;
 
             var criteria = new WhereClause();
 
