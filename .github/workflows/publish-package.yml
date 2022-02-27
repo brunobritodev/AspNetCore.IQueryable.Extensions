@@ -5,8 +5,7 @@ on:
     branches: [ master ]
 
 env:
-  PACKAGE_MAJOR_VERSION: 5
-  PACKAGE_MINOR_VERSION: 0
+  REPOSITORY_URL: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
   CURRENT_REPO_URL: https://github.com/${{ github.repository }}
 
 jobs:
