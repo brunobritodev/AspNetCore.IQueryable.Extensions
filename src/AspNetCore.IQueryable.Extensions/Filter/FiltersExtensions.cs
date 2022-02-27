@@ -88,6 +88,10 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                     return Expression.LessThanOrEqual(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.Contains:
                     return ContainsExpression<TEntity>(expression);
+                case WhereOperator.GreaterThanOrEqualWhenNullable:
+                    return GreaterThanOrEqualWhenNullable(expression.FieldToFilter, expression.FilterBy);
+                case WhereOperator.LessThanOrEqualWhenNullable:
+                    return LessThanOrEqualWhenNullable(expression.FieldToFilter, expression.FilterBy);
                 case WhereOperator.StartsWith:
                     return Expression.Call(expression.FieldToFilter,
                         typeof(string).GetMethods()
@@ -96,6 +100,33 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                 default:
                     return Expression.Equal(expression.FieldToFilter, expression.FilterBy);
             }
+        }
+        
+        private static Expression LessThanOrEqualWhenNullable(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            
+            return Expression.LessThanOrEqual(e1, e2);
+        }
+        
+        private static Expression GreaterThanOrEqualWhenNullable(Expression e1, Expression e2)
+        {
+            if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
+                e2 = Expression.Convert(e2, e1.Type);
+            
+            else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
+                e1 = Expression.Convert(e1, e2.Type);
+            
+            return Expression.GreaterThanOrEqual(e1, e2);
+        }
+        
+        private static bool IsNullableType(Type t)
+        {
+            return t.IsGenericType && t.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         private static Expression ContainsExpression<TEntity>(ExpressionParser expression)
