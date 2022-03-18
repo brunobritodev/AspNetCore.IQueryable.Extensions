@@ -71,6 +71,18 @@ namespace RestFulTests
         }
 
         [Fact]
+        public void Should_Ignore_Attribute_Max_When_Valid_Limit_Is_Given()
+        {
+            var paginate = new PagingMax()
+            {
+                Offset = 0,
+                Limit = 2
+            };
+            var sortingByFieldName = _users.AsQueryable().Apply(paginate);
+            sortingByFieldName.Should().HaveCount(2);
+        }
+        
+        [Fact]
         public void Should_Return_Alldata_When_Limit_Is_Not_Specified()
         {
             var paginate = new SinglePaging();
