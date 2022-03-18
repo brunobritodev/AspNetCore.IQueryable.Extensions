@@ -25,7 +25,7 @@ namespace AspNetCore.IQueryable.Extensions.Pagination
             if (attr?.GetType() == typeof(QueryOperatorAttribute))
             {
                 var data = (QueryOperatorAttribute)attr;
-                if (data.Max > 0)
+                if (options.Limit is null || options.Limit < 0 || options.Limit > data.Max && data.Max >= 0)
                     options.Limit = data.Max;
             }
 
