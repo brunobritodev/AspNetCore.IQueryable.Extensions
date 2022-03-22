@@ -241,4 +241,3 @@ This lightweight API create a custom IQueryable based in Querystring to help you
 # License
 
 AspNet.Core.IQueryable.Extensions is Open Source software and is released under the MIT license. This license allow the use of AspNet.Core.IQueryable.Extensions in free and commercial applications and libraries without restrictions.
-
