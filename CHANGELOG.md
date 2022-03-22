@@ -1,3 +1,10 @@
+## [6.0.1](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/compare/v6.0.0...v6.0.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* max operator ([2a6dcca](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/commit/2a6dccac5c1a7a80a657461f24c913bbbbee4672)), closes [#9](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/issues/9)
+
 # [6.0.0](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/compare/v5.0.0...v6.0.0) (2022-02-27)
 
 
