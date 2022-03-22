@@ -1,3 +1,10 @@
+## [6.0.2](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/compare/v6.0.1...v6.0.2) (2022-03-22)
+
+
+### Bug Fixes
+
+* ci ([2d9f83e](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/commit/2d9f83ee3b64694aad7b1b2ef4c80e30be5b948c))
+
 ## [6.0.1](https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions/compare/v6.0.0...v6.0.1) (2022-03-22)
 
 
