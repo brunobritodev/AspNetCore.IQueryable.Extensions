@@ -11,6 +11,7 @@
         Contains,
         StartsWith,
         LessThanOrEqualWhenNullable, 
-        GreaterThanOrEqualWhenNullable
+        GreaterThanOrEqualWhenNullable,
+        EqualsWhenNullable
     }
 }
