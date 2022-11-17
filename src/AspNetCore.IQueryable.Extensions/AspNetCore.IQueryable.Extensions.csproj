@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>netstandard2.1;net6.0;net7.0</TargetFrameworks>
     <Version>3.1.0</Version>
     <Authors>Bruno Brito</Authors>
     <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon-nuget.png</PackageIconUrl>
     <PackageTags>RESTFul API Extensions IQueryable linq</PackageTags>
-    <Title>RESTFul Extensions</Title>
+    <Title>IQueryable Extensions .NET</Title>
     <Description>Extensions to help build truly RESTFul API's</Description>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
@@ -22,15 +22,8 @@
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
   </ItemGroup>
 
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <AssemblyTitle>IQueryable Extensions .NET Standard 2.0</AssemblyTitle>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
-    <AssemblyTitle>IQueryable Extensions .NET Standard 2.1</AssemblyTitle>
-  </PropertyGroup>
 
-
-  <Target Name="CopyHook" AfterTargets="AfterBuild" Condition=" '$(Configuration)' == 'Debug' ">
+  <Target Name="CopyHook" AfterTargets="AfterBuild" Condition="'$(Configuration)' == 'Debug'">
     <ItemGroup>
       <_CustomFiles Include="../../.github/hooks/commit-msg" />
     </ItemGroup>
