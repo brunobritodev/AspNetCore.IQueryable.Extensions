@@ -1,3 +1,18 @@
+# [7.1.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.0.0...v7.1.0) (2023-09-08)
+
+
+### Bug Fixes
+
+* semantic release ([e73ff6c](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/e73ff6cd570fda5e517a040714a32aeed06cf73e))
+
+
+### Features
+
+* EqualsNullable ([0fd26d9](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/0fd26d9fb9cf154e6888c9e5407e4699d7d63d0e))
+* fix nuget key ([5d60cf2](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/5d60cf2f08420fde95e3135e9b2930aa169a6545))
+* net 7 ([9283c74](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/9283c748919a8bcef0eb0a75f7e59e7bf21044b4))
+* net7 ([fe2dbd8](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/fe2dbd8722acbdc3f5de588c5dfa5893886590b2))
+
 # [7.0.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v6.0.2...v7.0.0) (2022-11-17)
 
 
