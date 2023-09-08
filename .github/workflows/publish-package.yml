@@ -60,4 +60,4 @@ jobs:
 
       - name: Publish the package to nuget.org
         run: dotnet nuget push ./out/*.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN}} --source https://api.nuget.org/v3/index.json
-        
+      
