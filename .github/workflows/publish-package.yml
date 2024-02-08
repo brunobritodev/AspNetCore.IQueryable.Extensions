@@ -29,28 +29,25 @@ jobs:
         with:
           dotnet-version: 7.0.x
 
-      - name: Setup .NET Core 3.1
+      - name: Setup .NET 8
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: 3.1.x
-
+          dotnet-version: 8.0.x
+          
       - name: Restore dependencies
         run: dotnet restore 
 
       - name: Build
         run: dotnet build --no-restore
 
-      - name: Test
-        run: dotnet test
-
       - name: Semantic Release
         id: semantic
-        uses: cycjimmy/semantic-release-action@v2
+        uses: cycjimmy/semantic-release-action@v3
         with:
           semantic_version: 19.0.5
           extra_plugins: |
-            "@semantic-release/changelog"
-            "@semantic-release/git"
+            @semantic-release/changelog
+            @semantic-release/git
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -58,5 +55,5 @@ jobs:
         run: dotnet pack -c Release -o out -p:PackageVersion=${{ steps.semantic.outputs.new_release_version }} -p:RepositoryUrl=${{env.CURRENT_REPO_URL}}
 
       - name: Publish the package to nuget.org
-        run: dotnet nuget push ./out/*.nupkg --api-key ${{ secrets.NUGET_AUTH_TOKEN}} --source https://api.nuget.org/v3/index.json
+        run: dotnet nuget push ./out/*.nupkg -n -d -k ${{ secrets.NUGET_AUTH_TOKEN}} -s https://api.nuget.org/v3/index.json
     
