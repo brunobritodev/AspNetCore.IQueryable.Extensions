@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.1.0...v7.1.1) (2023-09-08)
+
+
+### Bug Fixes
+
+* github token ([4a9b5bb](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/4a9b5bb1b61006b5db39f1c6aa6bf015e30c538d))
+
 # [7.1.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.0.0...v7.1.0) (2023-09-08)
 
 
