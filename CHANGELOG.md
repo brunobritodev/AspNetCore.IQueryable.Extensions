@@ -1,3 +1,10 @@
+# [9.2.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v9.1.0...v9.2.0) (2026-02-05)
+
+
+### Features
+
+* now Sort support HasName parameter ([7721c12](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/7721c1297527251cba37b8406d104a50613c8d1b))
+
 # [9.1.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v9.0.0...v9.1.0) (2026-02-05)
 
 
