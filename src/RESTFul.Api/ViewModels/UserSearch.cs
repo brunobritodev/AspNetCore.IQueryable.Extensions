@@ -14,6 +14,10 @@ namespace RESTFul.Api.ViewModels
         [QueryOperator(Operator = WhereOperator.GreaterThan)]
         public DateTime? Birthday { get; set; }
 
+
+        [QueryOperator(Operator = WhereOperator.LessThan, HasName = "Birthday")]
+        public DateTime? BirthdayMenorQue { get; set; }
+
         [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
         public string Name { get; set; }
 

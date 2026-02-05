@@ -2,7 +2,7 @@
 # ASP.NET Core IQueryable Extensions
 ![Nuget](https://img.shields.io/nuget/v/AspNetCore.IQueryable.Extensions)![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/brunohbrito/AspNetCore.IQueryable.Extensions/14)[![Build Status](https://dev.azure.com/brunohbrito/AspNetCore.IQueryable.Extensions/_apis/build/status/brunohbrito.AspNetCore.IQueryable.Extensions?branchName=master)](https://dev.azure.com/brunohbrito/AspNetCore.IQueryable.Extensions/_build/latest?definitionId=16&branchName=master)
 
-<img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-github.png" />
+<img align="right" width="100px" src="https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/blob/master/build/restful-icon-github.png?raw=true" />
 Lightweight API that construct custom IQueryable LINQ Extensions to help you filter, sort and paginate your objects from a custom Class and expose it as GET parameter.
 
 
@@ -63,7 +63,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 ```
 
 Done! 
-<img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon.png" />
+<img align="right" width="100px" src="https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/blob/master/build/restful-icon.png?raw=true" />
 You can send a request to you API like this: `https://www.myapi.com/users?username=bhdebrito@gmail.com&name=bruno`
 
 
@@ -95,7 +95,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 }
 ```
 Example GET: `https://www.myapi.com/users?username=bruno&sortby=username,-birtday`
-<img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/restful-icon-2.png" />
+<img align="right" width="100px" src="https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/blob/master/build/restful-icon-2.png?raw=true" />
 
 # Paging
 
@@ -127,7 +127,7 @@ public async Task<ActionResult<IEnumerable<User>>> Get([FromQuery] UserSearch se
 ```
 
 Example GET: `https://www.myapi.com/users?username=bruno&limit=10&offset=20`
-<img align="right" width="100px" src="https://jpproject.blob.core.windows.net/images/all-in-one.png" />
+<img align="right" width="100px" src="https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/blob/master/build/all-in-one.png?raw=true" />
 
 # All in One
 

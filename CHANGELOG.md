@@ -1,3 +1,20 @@
+# [9.0.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v8.0.0...v9.0.0) (2026-02-05)
+
+
+### Bug Fixes
+
+* .net versions ([d93b3d9](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/d93b3d96bdc56e44b27ef324ebf2917624303587))
+
+
+### Features
+
+* **runtime:** upgrade project to latest .NET version ([ed29a88](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/ed29a882c69ec05358c26639f3fd6009cf9d8bdb))
+
+
+### BREAKING CHANGES
+
+* **runtime:** dropped support for non-LTS .NET versions
+
 # [8.0.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.2.0...v8.0.0) (2024-02-08)
 
 
