@@ -10,8 +10,9 @@
         LessThanOrEqualTo,
         Contains,
         StartsWith,
-        LessThanOrEqualWhenNullable, 
+        LessThanOrEqualWhenNullable,
         GreaterThanOrEqualWhenNullable,
-        EqualsWhenNullable
+        EqualsWhenNullable,
+        ContainsWithLikeForList
     }
 }

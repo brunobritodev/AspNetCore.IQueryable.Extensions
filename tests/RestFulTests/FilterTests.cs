@@ -22,9 +22,12 @@ namespace RestFulTests
         [Fact]
         public void Should_Filter_By_Has_Name_Attribute()
         {
+            int startIndex = new Random().Next(0, _users.Last().FirstName.Length - 3);
+            var randomStr = _users.First(x => x.FirstName.Length > 4).FirstName.Substring(startIndex, 3);
+
             var userSearch = new UserSearch()
             {
-                Name = _users.Last().FirstName
+                Names = new() { randomStr }
             };
 
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
@@ -49,7 +52,7 @@ namespace RestFulTests
         {
             var userSearch = new UserSearch()
             {
-                Name = _users.Last().FirstName,
+                Names = new() { _users.Last().FirstName },
                 Username = _users.Last().Username
             };
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);
@@ -73,7 +76,7 @@ namespace RestFulTests
         {
             var userSearch = new UserSearch()
             {
-                Name = _users.First().FirstName,
+                Names = new() { _users.First().FirstName },
                 Ssn = _users.First().SocialNumber.Identification,
                 Username = _users.Last().Username
             };
@@ -88,7 +91,7 @@ namespace RestFulTests
         {
             var userSearch = new UserSearch()
             {
-                Name = _users.First().FirstName,
+                Names = new() { _users.First().FirstName },
                 Username = _users.Last().Username
             };
             var sortingByFieldName = _users.AsQueryable().Filter(userSearch);

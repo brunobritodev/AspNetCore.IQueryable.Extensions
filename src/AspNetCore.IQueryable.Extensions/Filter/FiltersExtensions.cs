@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -99,30 +100,32 @@ namespace AspNetCore.IQueryable.Extensions.Filter
                         typeof(string).GetMethods()
                             .First(m => m.Name == "StartsWith" && m.GetParameters().Length == 1),
                         expression.FilterBy);
+                case WhereOperator.ContainsWithLikeForList:
+                    return ContainsWithLikeForListExpression<TEntity>(expression);
                 default:
                     return Expression.Equal(expression.FieldToFilter, expression.FilterBy);
             }
         }
-        
+
         private static Expression LessThanOrEqualWhenNullable(Expression e1, Expression e2)
         {
             if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
                 e2 = Expression.Convert(e2, e1.Type);
-            
+
             else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
                 e1 = Expression.Convert(e1, e2.Type);
-            
+
             return Expression.LessThanOrEqual(e1, e2);
         }
-        
+
         private static Expression GreaterThanOrEqualWhenNullable(Expression e1, Expression e2)
         {
             if (IsNullableType(e1.Type) && !IsNullableType(e2.Type))
                 e2 = Expression.Convert(e2, e1.Type);
-            
+
             else if (!IsNullableType(e1.Type) && IsNullableType(e2.Type))
                 e1 = Expression.Convert(e1, e2.Type);
-            
+
             return Expression.GreaterThanOrEqual(e1, e2);
         }
 
@@ -158,9 +161,33 @@ namespace AspNetCore.IQueryable.Extensions.Filter
 
                 return Expression.Call(expression.FieldToFilter, methodToApplyContains, expression.FilterBy);
             }
-
         }
 
+        private static Expression ContainsWithLikeForListExpression<TEntity>(ExpressionParser expression)
+        {
+            Expression orExpression = null;
+
+            if (expression.FilterBy is ConstantExpression constantExpression && constantExpression.Value is IEnumerable<object> patterns)
+            {
+                foreach (var pattern in patterns)
+                {
+                    var likePattern = Expression.Constant(pattern);
+                    var containsMethod = typeof(string).GetMethod("Contains", new[] { typeof(string) });
+                    var containsExpression = Expression.Call(expression.FieldToFilter, containsMethod, likePattern);
+
+                    if (orExpression == null)
+                    {
+                        orExpression = containsExpression;
+                    }
+                    else
+                    {
+                        orExpression = Expression.OrElse(orExpression, containsExpression);
+                    }
+                }
+            }
+
+            return orExpression;
+        }
 
     }
 }

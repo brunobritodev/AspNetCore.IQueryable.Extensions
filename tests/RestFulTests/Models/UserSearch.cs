@@ -16,8 +16,8 @@ namespace RestFulTests.Models
         [QueryOperator(Operator = WhereOperator.GreaterThan)]
         public DateTime? Birthday { get; set; }
 
-        [QueryOperator(Operator = WhereOperator.Contains, HasName = "Firstname")]
-        public string Name { get; set; }
+        [QueryOperator(Operator = WhereOperator.ContainsWithLikeForList, HasName = "Firstname")]
+        public List<string> Names { get; set; }
 
         [QueryOperator(Operator = WhereOperator.Contains, HasName = "SocialNumber.Identification")]
         public string Ssn { get; set; }

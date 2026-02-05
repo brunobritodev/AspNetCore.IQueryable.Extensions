@@ -59,8 +59,6 @@ namespace AspNetCore.IQueryable.Extensions.Filter
         internal static WhereClause GetCriteria(ICustomQueryable model, PropertyInfo propertyInfo)
         {
             bool isCollection = propertyInfo.IsPropertyACollection();
-            //if (!isCollection && propertyInfo.IsPropertyObject(model))
-            //    return null;
 
             var criteria = new WhereClause();
 
@@ -70,12 +68,12 @@ namespace AspNetCore.IQueryable.Extensions.Filter
             {
                 var data = (QueryOperatorAttribute)attr.First(a => a.GetType() == typeof(QueryOperatorAttribute));
                 criteria.UpdateAttributeData(data);
-                if (data.Operator != WhereOperator.Contains && isCollection)
-                    throw new ArgumentException($"{propertyInfo.Name} - For array the only Operator available is Contains");
-            }
+                if (isCollection && (data.Operator != WhereOperator.Contains && data.Operator != WhereOperator.ContainsWithLikeForList))
+                    throw new ArgumentException($"{propertyInfo.Name} - For array the only Operator available is Contains and ContainsWithLikeForList");
 
-            if (isCollection)
-                criteria.Operator = WhereOperator.Contains;
+                if (!isCollection && data.Operator == WhereOperator.ContainsWithLikeForList)
+                    throw new ArgumentException($"{propertyInfo.Name} - LikeInList Operator is only available to string arrays");
+            }
 
             var customValue = propertyInfo.GetValue(model, null);
             if (customValue == null)
