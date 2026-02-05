@@ -1,3 +1,15 @@
+# [8.0.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.2.0...v8.0.0) (2024-02-08)
+
+
+### Features
+
+* .NET 8 release ([972a0cd](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/972a0cdce76125cc3079a8edf85f39b3e1622637))
+
+
+### BREAKING CHANGES
+
+* .NET 8
+
 # [7.2.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v7.1.1...v7.2.0) (2024-02-08)
 
 
