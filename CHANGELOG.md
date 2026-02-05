@@ -1,3 +1,10 @@
+## [9.2.2](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v9.2.1...v9.2.2) (2026-02-05)
+
+
+### Bug Fixes
+
+* .net 10 ([5df2cc0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/5df2cc092708b42cd8b2eb2e3f34a927d9fd4712))
+
 ## [9.2.1](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v9.2.0...v9.2.1) (2026-02-05)
 
 
