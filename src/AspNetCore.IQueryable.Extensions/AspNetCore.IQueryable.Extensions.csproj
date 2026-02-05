@@ -2,21 +2,49 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net6.0;net7.0;net8.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <PackageId>AspNetCore.IQueryable.Extensions</PackageId>
     <Version>3.1.0</Version>
-    <Authors>Bruno Brito</Authors>
-    <PackageIconUrl>https://jpproject.blob.core.windows.net/images/restful-icon-nuget.png</PackageIconUrl>
-    <PackageTags>RESTFul API Extensions IQueryable linq</PackageTags>
-    <Title>IQueryable Extensions .NET</Title>
-    <Description>Extensions to help build truly RESTFul API's</Description>
+    <Authors>brunobritodev</Authors>
+
+    <!-- Metadata -->
+    <Title>IQueryable Extensions for ASP.NET Core</Title>
+    <Description>
+    A .NET library that simplifies building flexible REST APIs by applying filtering,
+    sorting and pagination over IQueryable sources in ASP.NET Core applications.
+    Reduces boilerplate when exposing dynamic query capabilities.
+    </Description>
+
+    <PackageTags>aspnetcore;iqueryable;linq;filtering;sorting;pagination;rest;api;dotnet</PackageTags>
+
     <NeutralLanguage>en</NeutralLanguage>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <RepositoryUrl>https://github.com/brunohbrito/AspNet.Core.RESTFul.Extensions/</RepositoryUrl>
+    <RepositoryUrl>https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageProjectUrl>https://github.com/brunohbrito/AspNetCore.IQueryable.Extensions</PackageProjectUrl>
+    <RepositoryBranch>master</RepositoryBranch>
+    <PackageProjectUrl>https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions</PackageProjectUrl>
+    <PackageIcon>icon.png</PackageIcon>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+
     <RootNamespace>AspNetCore.IQueryable.Extensions</RootNamespace>
+
+    <!-- Release notes -->
+    <PackageReleaseNotes>
+    v3.1.0:
+    - Extensions for filtering, sorting and paging IQueryable data
+    - Designed for ASP.NET Core REST APIs
+    - Reduces boilerplate for dynamic query handling
+    </PackageReleaseNotes>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\icon.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
