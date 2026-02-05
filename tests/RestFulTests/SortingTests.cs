@@ -72,6 +72,36 @@ namespace RestFulTests
 
 
         [Fact]
+        public void Should_Sort_By_HasName_Field()
+        {
+            var sort = new UserSearch()
+            {
+                Sort = "names"
+            };
+            var sortingByFieldName = _users.AsQueryable().Sort(sort).ToList();
+            var sortingByOriginal = _users.OrderBy(s => s.FirstName).ToList();
+            for (int i = 0; i < sortingByFieldName.Count(); i++)
+            {
+                sortingByFieldName[i].FirstName.Should().Be(sortingByOriginal[i].FirstName);
+            }
+        }
+
+        [Fact]
+        public void Should_Sort_By_HasName_Nested_Field()
+        {
+            var sort = new UserSearch()
+            {
+                Sort = "ssn"
+            };
+            var sortingByFieldName = _users.AsQueryable().Sort(sort).ToList();
+            var sortingByOriginal = _users.OrderBy(s => s.SocialNumber.Identification).ToList();
+            for (int i = 0; i < sortingByFieldName.Count(); i++)
+            {
+                sortingByFieldName[i].SocialNumber.Identification.Should().Be(sortingByOriginal[i].SocialNumber.Identification);
+            }
+        }
+
+        [Fact]
         public void Should_Not_Throw_Error_When_Sort_Field_Doesnt_Exist()
         {
             var sort = new UserSearch()
