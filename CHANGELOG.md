@@ -1,3 +1,10 @@
+# [9.1.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v9.0.0...v9.1.0) (2026-02-05)
+
+
+### Features
+
+* support for Like when list ([e16db06](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/commit/e16db06069e9fe49b38dfff891d4327937bd0196))
+
 # [9.0.0](https://github.com/brunobritodev/AspNetCore.IQueryable.Extensions/compare/v8.0.0...v9.0.0) (2026-02-05)
 
 
